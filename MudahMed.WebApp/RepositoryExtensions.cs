@@ -1,0 +1,16 @@
+﻿using Microsoft.AspNetCore.DataProtection.Repositories;
+using MudahMed.Data.Repositories;
+using MudahMed.Data.Repositories.Abstract;
+using NuGet.Protocol.Core.Types;
+
+namespace MudahMed.WebApp
+{
+    public static class RepositoryExtensions
+    {
+        public static void AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
+            // Register other repositories here
+        }
+    }
+}
