@@ -1,44 +1,40 @@
-﻿@model IEnumerable<MudahMed.Data.ViewModel.RoleViewModel>
+﻿@model IEnumerable<MudahMed.Data.Entities.CorpGroup>
 
 <main id="js-page-content" role="main" class="page-content">
     <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
         <!-- Breadcrumb items will be appended here -->
     </ol>
-<div class="row">
-    <div class="col-xl-12">
-        <div id="panel-1" class="panel">
-            <div class="panel-hdr">
-                <h2>
-                    List roles
-                </h2>
-                <div class="panel-toolbar">
-                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        List Corporate Group
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
                 </div>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <p class="card-description">
-                        <a class="btn btn-primary" asp-action="CreateRole">Create new role</a>
-                    </p>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <p class="card-description">
+                            <a class="btn btn-primary" asp-action="CreateRole">Create new Corporate Group</a>
+                        </p>
 
-                        <form method="get" asp-action="ListRoles">
+                        <form method="get" asp-action="ListCorpGroup">
                             <div class="panel-content">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="roleName">Role Name</label>
-                                        <input type="text" id="roleName" name="roleName" class="form-control" placeholder="Search by role name" />
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="roleDescription">Role Description</label>
-                                        <input type="text" id="roleDescription" name="roleDescription" class="form-control" placeholder="Search by role description" />
+                                        <label for="corpGroupName">Corporate Group name</label>
+                                        <input type="text" id="corpGroupName" name="corpGroupName" class="form-control" placeholder="Search by Corporate Group name" />
                                     </div>
                                 </div>
                                 <div class="panel-content d-flex flex-row">
                                     <button class="btn btn-info ml-auto" type="submit">Search</button>
                                 </div>
-                            </div>                      
+                            </div>
                         </form>
                         <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                             <thead>
@@ -47,7 +43,19 @@
                                         @Html.DisplayNameFor(model => model.Name)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Description)
+                                        @Html.DisplayNameFor(model => model.Addr1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ContactPerson)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LastModifiedDate)
                                     </th>
                                     <th>Actions</th>
                                 </tr>
@@ -60,24 +68,36 @@
                                             @Html.DisplayFor(modelItem => item.Name)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Description)
+                                            @Html.DisplayFor(modelItem => item.Addr1)   @Html.DisplayFor(modelItem => item.Addr2) @Html.DisplayFor(modelItem => item.Addr3)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ContactPerson)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastModifiedDate)
                                         </td>
                                         <td class="d-flex justify-content-end">
                                             <div class="demo">
-                                                <a class="btn btn-primary me-2" asp-action="EditRole" asp-route-Id="@item.Id">Edit</a>
-                                                <button class="btn btn-danger" type="button" onclick="onDelete('@item.Id')" @(item.IsAssigned ? "disabled" : "") >Delete</button>
+                                                <a class="btn btn-primary me-2" asp-action="EditRole" asp-route-Id="@item.CorpGroupID">Edit</a>
+                                                <button class="btn btn-danger" type="button" onclick="onDelete('@item.CorpGroupID')" >Delete</button>
                                             </div>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
-                       </table>
-                    <!-- datatable end -->
+                        </table>
+                        <!-- datatable end -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </main>
 
 <style>

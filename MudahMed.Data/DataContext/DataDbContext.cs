@@ -43,12 +43,15 @@ namespace MudahMed.Data.DataContext
             modelBuilder.ApplyConfiguration(new TimeConfiguration());
             modelBuilder.ApplyConfiguration(new TitleConfiguration());
             modelBuilder.ApplyConfiguration(new CountryConfiguration());
+            modelBuilder.ApplyConfiguration(new CorpConfiguration());
+            modelBuilder.ApplyConfiguration(new CorpGroupConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
             modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
             modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+            modelBuilder.Entity<Corp>().HasOne(c => c.CorpGroup).WithMany(g => g.Corporations).HasForeignKey(c => c.CorpGroupID);
 
             //Data seeding
             modelBuilder.Seed();
@@ -64,5 +67,7 @@ namespace MudahMed.Data.DataContext
         public DbSet<Time> Times { get; set; }
         public DbSet<Title> Titles { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Corp> Corps { get; set; }
+        public DbSet<CorpGroup> CorpGroups { get; set; }
     }
 }

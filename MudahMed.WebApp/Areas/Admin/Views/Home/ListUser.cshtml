@@ -6,12 +6,9 @@
     ViewData["Title"] = "All Clinic";
 }
 <main id="js-page-content" role="main" class="page-content">
-<ol class="breadcrumb page-breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0);">MudahMed</a></li>
-            <li class="breadcrumb-item">User Management</li>
-            <li class="breadcrumb-item active">All Clinic</li>
-            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-        </ol>
+    <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb items will be appended here -->
+    </ol>
 <div class="row">
     <div class="col-xl-12">
         <div id="panel-1" class="panel">
@@ -31,7 +28,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Employer Name
+                                        Clinic User
                                     </th>
                                     <th>
                                         Address

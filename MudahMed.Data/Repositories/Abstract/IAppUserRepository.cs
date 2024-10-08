@@ -12,5 +12,6 @@ namespace MudahMed.Data.Repositories.Abstract
         IList<AppUser> GetAll();
 
         Task<AppUser> GetById(Guid id);
+        IList<AppUser> GetUsersByRoleAsync(string roleName);
     }
 }

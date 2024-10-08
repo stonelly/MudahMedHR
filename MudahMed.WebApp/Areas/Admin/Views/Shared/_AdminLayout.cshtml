@@ -105,6 +105,75 @@
             localStorage.setItem("themeSettings", "");
         }
 
+
+       $(document).ready(function () {
+            // Check for saved menu item and breadcrumb in localStorage
+            const activeItem = localStorage.getItem('activeMenuItem');
+            const storedBreadcrumb = localStorage.getItem('breadcrumb');
+    
+            if (storedBreadcrumb) {
+                $('#breadcrumb').html(storedBreadcrumb);
+            }
+
+            if (activeItem) {
+                // Activate the saved menu item
+                $('#js-nav-menu a[href="' + activeItem + '"]').closest('li').addClass('active');
+                $('#js-nav-menu a[href="' + activeItem + '"]').closest('ul').closest('li').addClass('active open');
+            }
+
+            $('#js-nav-menu a, .app-list a').on('click', function (event) {
+                const childItems = $(this).closest('li').find('ul').length;
+
+                // Check if the clicked item is a parent (has child items)
+                if (childItems > 0) {
+                    // Prevent default action for parent menu items
+                    event.preventDefault();
+                    return; // Exit the function
+                }
+
+                const clickedText = $(this).text().trim();
+                const parentMenuText = $(this).closest('li').parent().siblings('a').text().trim();
+                const href = $(this).attr('href');
+
+                // Check if the redirect is to /admin
+                if (href === '/admin') {
+                    // Clear localStorage for active menu and breadcrumb
+                    localStorage.removeItem('activeMenuItem');
+                    localStorage.removeItem('breadcrumb');
+                    $('#breadcrumb').empty(); // Clear the breadcrumb display
+                } else {
+                    // Build breadcrumb HTML
+                    const breadcrumbHtml = `
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">MudahMed</a></li>
+                        <li class="breadcrumb-item">${parentMenuText}</li>
+                        <li class="breadcrumb-item active">${clickedText}</li>
+                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                    `;
+
+                    // Store breadcrumb in localStorage
+                    localStorage.setItem('breadcrumb', breadcrumbHtml);
+                    // Clear previous breadcrumb items and update
+                    $('#breadcrumb').empty().html(breadcrumbHtml);
+                }
+        
+                // Redirect to the clicked link
+                window.location.href = href;
+
+                // Update menu item states
+                var childLi = $(this).closest('li');
+                var parentLi = childLi.parent().closest('li');
+
+                $('#js-nav-menu li').removeClass('active open');
+                childLi.addClass('active');
+                parentLi.addClass('active open');
+
+                // Save the clicked menu item's href to localStorage
+                localStorage.setItem('activeMenuItem', href);
+            });
+});
+
+
+
     </script>
 
 
@@ -227,7 +296,7 @@
                 <!-- BEGIN Page Footer -->
                 <footer class="page-footer" role="contentinfo">
                     <div class="d-flex align-items-center flex-1 text-muted">
-                        <span class="hidden-md-down fw-700">2024 © HR Portal by Solution Tech</span>
+                        <span class="hidden-md-down fw-700">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved MudahMed.com</span>
                     </div>
                 </footer>
                 <!-- END Page Footer -->
@@ -238,7 +307,7 @@
                             <div class="modal-body">
                                 <ul class="app-list w-auto h-auto p-0 text-left">
                                     <li>
-                                        <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                        <a href="/admin" class="app-list-item text-white border-0 m-0">
                                             <div class="icon-stack">
                                                 <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
                                                 <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
@@ -862,95 +931,7 @@
                             <span class="onoffswitch-title">Dark Navigation</span>
                             <span class="onoffswitch-title-desc">Navigation background is darkend</span>
                         </div>
-                        <hr class="mb-0 mt-4">
-                        <div class="mt-4 d-table w-100 pl-5 pr-3">
-                            <div class="d-table-cell align-middle">
-                                <h5 class="p-0">
-                                    Global Font Size
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="list mt-1">
-                            <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
-                                <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
-                                    <input type="radio" name="changeFrontSize"> SM
-                                </label>
-                                <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
-                                    <input type="radio" name="changeFrontSize" checked=""> MD
-                                </label>
-                                <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
-                                    <input type="radio" name="changeFrontSize"> LG
-                                </label>
-                                <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
-                                    <input type="radio" name="changeFrontSize"> XL
-                                </label>
-                            </div>
-                            <span class="onoffswitch-title-desc d-block mb-0">
-                                Change <strong>root</strong> font size to effect rem
-                                values (resets on page refresh)
-                            </span>
-                        </div>
-                        <hr class="mb-0 mt-4">
-                        <div class="mt-4 d-table w-100 pl-5 pr-3">
-                            <div class="d-table-cell align-middle">
-                                <h5 class="p-0 pr-2 d-flex">
-                                    Theme colors
-                                    <a href="#" class="ml-auto fw-400 fs-xs" data-toggle="popover" data-trigger="focus" data-placement="top" title="" data-html="true" data-content="The settings below uses <code>localStorage</code> to load the external <strong>CSS</strong> file as an overlap to the base css. Due to network latency and <strong>CPU utilization</strong>, you may experience a brief flickering effect on page load which may show the intial applied theme for a split second. Setting the prefered style/theme in the header will prevent this from happening." data-original-title="<span class='text-primary'><i class='fal fa-exclamation-triangle mr-1'></i> Heads up!</span>" data-template="<div class=&quot;popover bg-white border-white&quot; role=&quot;tooltip&quot;><div class=&quot;arrow&quot;></div><h3 class=&quot;popover-header bg-transparent&quot;></h3><div class=&quot;popover-body fs-xs&quot;></div></div>"><i class="fal fa-info-circle mr-1"></i> more info</a>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="expanded theme-colors pl-5 pr-3">
-                            <ul class="m-0">
-                                <li>
-                                    <a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-14" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-14.css" data-toggle="tooltip" data-placement="top" title="Supernova" data-original-title="Supernova"></a>
-                                </li>
-                                <li>
-                                    <a href="#" id="myapp-15" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-15.css" data-toggle="tooltip" data-placement="top" title="Hoki" data-original-title="Hoki"></a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                         <hr class="mb-0 mt-4">
                         <div class="mt-4 d-table w-100 pl-5 pr-3">
                             <div class="d-table-cell align-middle">

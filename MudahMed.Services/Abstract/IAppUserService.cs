@@ -10,5 +10,7 @@ namespace MudahMed.Services.Abstract
     public interface IAppUserService
     {
         Task<IList<AppUser>> GetAllUsers();
+
+        Task<IList<AppUser>> GetUsersByRoleAsync(string roleName);
     }
 }

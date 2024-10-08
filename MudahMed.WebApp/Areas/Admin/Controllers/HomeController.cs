@@ -7,6 +7,9 @@ using AutoMapper;
 using MudahMed.Services.Abstract;
 using MudahMed.Data.ViewModel;
 using MudahMed.Services;
+using Microsoft.Extensions.Options;
+using MudahMed.Common.ConfigSetting;
+using MudahMed.Common.Constants;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 
@@ -19,12 +22,14 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         private readonly DataDbContext _context;
         private readonly IMapper _mapper;
         private readonly IAppUserService _appUserService;
+        private readonly int _maxResultLimit;
 
-        public HomeController(DataDbContext context, IAppUserService appUserService, IMapper mapper)
+        public HomeController(DataDbContext context, IAppUserService appUserService, IMapper mapper, IOptions<AppSettings> appSettings)
         {
             _appUserService = appUserService;
             _mapper = mapper;
             _context = context;
+            _maxResultLimit = appSettings.Value.MaxResultLimit;
         }
 
         [Route("index")]
@@ -59,9 +64,11 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         {
             int pageSize = 5;
             //var users = _context.AppUsers.OrderByDescending(u => u.Id).Where(u => u.Status != -1 && u.Status != 2).ToList();
-            var users = await _appUserService.GetAllUsers();
+            //var users = await _appUserService.GetAllUsers();
+            var users = await _appUserService.GetUsersByRoleAsync(Role.Role_Clinic);
+            
             //var vms = _mapper.Map<IList<ListEmployersViewWModel>>(users);
-           
+
             return View(users.ToPagedList(page ?? 1, pageSize));
         }
     }

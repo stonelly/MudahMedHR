@@ -21,7 +21,12 @@ namespace MudahMed.Services
 
         public async Task<IList<AppUser>> GetAllUsers()
         {
-            return await Task.Run(() => _userRepository.GetAll()); 
+            return await Task.Run(() => _userRepository.GetAll());
+        }
+
+        public async Task<IList<AppUser>> GetUsersByRoleAsync(string roleName)
+        {
+            return await Task.Run(() => _userRepository.GetUsersByRoleAsync(roleName));
         }
     }
 }

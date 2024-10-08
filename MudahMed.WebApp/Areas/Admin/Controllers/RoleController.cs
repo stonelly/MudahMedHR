@@ -3,6 +3,8 @@ using MudahMed.Data.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MudahMed.Common.ConfigSetting;
+using Microsoft.Extensions.Options;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
@@ -14,19 +16,57 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
     {
         private readonly RoleManager<AppRole> roleManager;
         private readonly UserManager<AppUser> userManager;
+        private readonly int _maxResultLimit;
 
-        public RoleController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager)
+        public RoleController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager, IOptions<AppSettings> appSettings)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            _maxResultLimit = appSettings.Value.MaxResultLimit;
         }
 
         [Route("list-roles")]
         [HttpGet]
-        public IActionResult ListRoles()
+        public async Task<IActionResult> ListRoles(string roleName, string roleDescription)
         {
-            var roles = roleManager.Roles;
-            return View(roles);
+            var roles = roleManager.Roles.AsQueryable();
+
+            if (!string.IsNullOrEmpty(roleName))
+            {
+                roles = roles.Where(r => r.Name.Contains(roleName));
+            }
+
+            if (!string.IsNullOrEmpty(roleDescription))
+            {
+                roles = roles.Where(r => r.Description.Contains(roleDescription));
+            }
+
+            List<RoleViewModel> roleViewModels = new List<RoleViewModel>();
+
+            foreach (var role in roles)
+            {
+                // Check if there are any users assigned to this role
+                var userCount = await userManager.GetUsersInRoleAsync(role.Name);
+
+                roleViewModels.Add(new RoleViewModel
+                {
+                    Id = role.Id.ToString(),
+                    Name = role.Name,
+                    Description = role.Description,
+                    IsAssigned = userCount.Any() // True if there are users assigned
+                });
+            }
+
+
+
+
+            // If no search criteria provided, take only the limit
+            if (string.IsNullOrEmpty(roleName) && string.IsNullOrEmpty(roleDescription))
+            {
+                roleViewModels = roleViewModels.Take(_maxResultLimit).ToList();
+            }
+
+            return View(roleViewModels);
         }
 
         [Route("create-role")]
@@ -109,7 +149,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 return View("NotFound");
             }
 
-            role.Name = model.RoleName;
+            //role.Name = model.RoleName;
             role.Description = model.RoleDescription;
             var result = await roleManager.UpdateAsync(role);
 
