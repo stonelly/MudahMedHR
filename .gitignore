@@ -124,3 +124,14 @@ blazor.webassembly.js
 blazorwasm.zip
 publish/
 wwwroot/dist/
+
+# Ignore NuGet packages directory
+/packages/
+
+# Ignore local build artifacts
+bin/
+obj/
+
+# Ignore local settings
+*.user
+*.suo
