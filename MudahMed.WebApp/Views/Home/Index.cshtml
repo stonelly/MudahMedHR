@@ -1,13 +1,4 @@
-﻿@model IEnumerable<MudahMed.Data.Entities.Job>
-
-@{
-    Layout = "_Layout";
-
-    //Jobs posted week ago
-    DateTime lastWeek = DateTime.Now.AddDays(-7); // get the time 7 days ago
-    byte jobCount = (byte)Model.Count(j => j.CreateDate >= lastWeek); // count the number of jobs in the period
-}
-
+﻿
 <!-- Start banner Area -->
 <section class="banner-area relative" id="home">
     <div class="overlay overlay-bg"></div>

@@ -44,9 +44,6 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             var userCount = _context.AppUsers.Count(u => u.Status != -1 && u.Status != 2);
             ViewBag.CountUser = userCount;
 
-            //job count
-            var jobCount = _context.Jobs.Count();
-            ViewBag.CountJob = jobCount;
 
             return View();
         }

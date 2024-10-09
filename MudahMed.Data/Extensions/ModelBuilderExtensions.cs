@@ -76,33 +76,6 @@ namespace MudahMed.Data.Extensions
                new Time() { Id = 4, Name = "At office", Slug = "at-office" },
                new Time() { Id = 5, Name = "Temporary", Slug = "temporary" }
             );
-
-            modelBuilder.Entity<Province>().HasData(
-               new Province() { Id = 1, Name = "Ho Chi Minh", Slug = "ho-chi-minh", CategoryId = 4 },
-               new Province() { Id = 2, Name = "Ha Noi", Slug = "ha-noi", CategoryId = 4 },
-               new Province() { Id = 3, Name = "Da Nang", Slug = "da-nang", CategoryId = 4 },
-               new Province() { Id = 4, Name = "Others", Slug = "others", CategoryId = 4 }
-            );
-
-            modelBuilder.Entity<Country>().HasData(
-               new Country() { Id = 1, Name = "Vietnam", Flag = "Vietnam.png" },
-               new Country() { Id = 2, Name = "United States", Flag = "USA.png" },
-               new Country() { Id = 3, Name = "China", Flag = "China.png" },
-               new Country() { Id = 4, Name = "Japan", Flag = "Japan.png" },
-               new Country() { Id = 5, Name = "Singapore", Flag = "Singapore.png" },
-               new Country() { Id = 6, Name = "Canada", Flag = "Canada.png" },
-               new Country() { Id = 7, Name = "England", Flag = "England.png" },
-               new Country() { Id = 8, Name = "India", Flag = "India.png" },
-               new Country() { Id = 9, Name = "Russia", Flag = "Russia.png" },
-               new Country() { Id = 10, Name = "Switzerland", Flag = "Switzerland.png" },
-               new Country() { Id = 11, Name = "France", Flag = "France.png" },
-               new Country() { Id = 12, Name = "Italy", Flag = "Italy.png" },
-               new Country() { Id = 13, Name = "Poland", Flag = "Poland.png" },
-               new Country() { Id = 14, Name = "South Korea", Flag = "Korea.png" },
-               new Country() { Id = 15, Name = "Australia", Flag = "Australia.png" },
-               new Country() { Id = 16, Name = "Germany", Flag = "Germany.png" },
-               new Country() { Id = 17, Name = "Sweden", Flag = "Sweden.png" }
-            );
         }
     }
 }

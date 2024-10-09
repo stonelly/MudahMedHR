@@ -28,19 +28,6 @@ namespace MudahMed.WebApp.Controllers
         [Route("register/{id}")]
         public IActionResult Register()
         {
-            ViewData["ProvinceId"] = new SelectList(_context.Provinces.OrderBy(p => p.Id), "Id", "Name");
-            ViewData["CountryId"] = new SelectList(_context.Countries.OrderBy(p => p.Name), "Id", "Name");
-            // Set default country to Vietnam
-            var countries = _context.Countries.OrderBy(p => p.Name).ToList();
-            var vietnam = countries.FirstOrDefault(c => c.Name == "Vietnam");
-            if (vietnam != null)
-            {
-                ViewData["CountryId"] = new SelectList(countries, "Id", "Name", vietnam.Id);
-            }
-            else
-            {
-                ViewData["CountryId"] = new SelectList(countries, "Id", "Name");
-            }
             return View();
         }
 
@@ -67,8 +54,7 @@ namespace MudahMed.WebApp.Controllers
             employer.CompanySize = model.CompanySize;
             employer.Location = model.Location;
             employer.WebsiteURL = model.WebsiteURL;
-            employer.ProvinceId = model.ProvinceId;
-            employer.CountryId = model.CountryId;
+       
             employer.Phone = model.Phone;
             employer.Status = 1; // waiting to confirm
             _context.Update(employer);
@@ -82,19 +68,7 @@ namespace MudahMed.WebApp.Controllers
         //[AllowAnonymous]
         public IActionResult RegisterToEmployer()
         {
-            ViewData["ProvinceId"] = new SelectList(_context.Provinces.OrderBy(p => p.Id), "Id", "Name");
-            ViewData["CountryId"] = new SelectList(_context.Countries.OrderBy(p => p.Name), "Id", "Name");
-            // Set default country to Vietnam
-            var countries = _context.Countries.OrderBy(p => p.Name).ToList();
-            var vietnam = countries.FirstOrDefault(c => c.Name == "Vietnam");
-            if (vietnam != null)
-            {
-                ViewData["CountryId"] = new SelectList(countries, "Id", "Name", vietnam.Id);
-            }
-            else
-            {
-                ViewData["CountryId"] = new SelectList(countries, "Id", "Name");
-            }
+         
             return View();
         }
 
@@ -131,8 +105,6 @@ namespace MudahMed.WebApp.Controllers
                     CompanySize = model.CompanySize,
                     Location = model.Location,
                     WebsiteURL = model.WebsiteURL,
-                    ProvinceId = model.ProvinceId,
-                    CountryId = model.CountryId,
                     Phone = model.Phone,
                     Status = 1 // waiting to confirm
                 };
@@ -153,8 +125,6 @@ namespace MudahMed.WebApp.Controllers
         [Route("update/{id}")]
         public async Task<IActionResult> Update(Guid id)
         {
-            ViewData["ProvinceId"] = new SelectList(_context.Provinces.OrderBy(p => p.Id), "Id", "Name");
-            ViewData["CountryId"] = new SelectList(_context.Countries.OrderBy(p => p.Name), "Id", "Name");
             var employer = await _context.AppUsers.Where(e => e.Id == id).FirstAsync();
             return View(employer);
         }
@@ -189,7 +159,7 @@ namespace MudahMed.WebApp.Controllers
             }
             employer.Email = employer.UserName = model.Email;
             employer.NormalizedEmail = employer.NormalizedUserName = (employer.Email ?? model.Email).ToUpper();
-            employer.ProvinceId = model.ProvinceId;
+
             employer.Description = model.Description;
             employer.Contact = model.Contact;
             employer.Content = model.Content;
@@ -197,8 +167,6 @@ namespace MudahMed.WebApp.Controllers
             employer.CompanySize = model.CompanySize;
             employer.Location = model.Location;
             employer.WebsiteURL = model.WebsiteURL;
-            employer.ProvinceId = model.ProvinceId;
-            employer.CountryId = model.CountryId;
             employer.Phone = model.Phone;
             _context.Update(employer);
             await _context.SaveChangesAsync();

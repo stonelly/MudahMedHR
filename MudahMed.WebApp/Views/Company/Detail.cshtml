@@ -45,8 +45,7 @@
                         }
                     </ul>
                     <ul class="tags">
-                        <li><a target="_blank" href="https://@Model.WebsiteURL/">@Model.WebsiteURL</a></li> - Established: @Model.CreateDate -
-                        <img width="30" height="20" src="https://localhost:7211/images/countries/@Model.Country.Flag" alt="flag"> @Model.Country.Name
+                        <li><a target="_blank" href="https://@Model.WebsiteURL/">@Model.WebsiteURL</a></li> - Established: @Model.CreateDate  
                     </ul>
                     <div class="content-wrap">
                         <h6>Company overview:</h6>
@@ -64,8 +63,6 @@
                         <h6>Working days:</h6>
                         <p>@Html.Raw(Model.WorkingDays)</p>
 
-                        <h6>Province:</h6>
-                        <p>@Html.Raw(Model.Province.Name)</p>
 
                         <h6>Contact:</h6>
                         <p>@Html.Raw(Model.Contact)</p>

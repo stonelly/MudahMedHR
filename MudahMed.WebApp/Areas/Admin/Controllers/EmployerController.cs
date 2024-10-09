@@ -40,7 +40,6 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                             WebsiteURL = emp.WebsiteURL,
                             UrlAvatar = emp.UrlAvatar,
                             RegisterDate = emp.CreateDate,
-                            ProvinceName = emp.Province.Name,
                             Status = emp.Status
                         });
             var employers = await employer.ToListAsync();

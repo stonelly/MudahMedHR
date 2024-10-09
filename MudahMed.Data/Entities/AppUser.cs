@@ -32,21 +32,14 @@ namespace MudahMed.Data.Entities
         public string? WebsiteURL { get; set; }
         [Display(Name = "Location")]
         public string? Location { get; set; }
-        public ICollection<Job>? Jobs { get; set; }
         public int? Status { set; get; } // 0 = denied, 1 = waiting, 2 = confirmed, -1 = admin, null = default
         [Required]
         public string Slug { get; set; }
-        public Province? Province { get; set; }
-        [Display(Name = "Province")]
-        public int? ProvinceId { get; set; }
         public bool? Disable { get; set; }
         [Display(Name = "Company size")]
         public string? CompanySize { get; set; }
         [Display(Name = "Working days")]
         public string? WorkingDays { get; set; }
-        public Country? Country { get; set; }
-        [Display(Name = "Country")]
-        public int? CountryId { get; set; }
         [Display(Name = "Content")]
         public string? Content { get; set; }
         public int Popular { get; set; }

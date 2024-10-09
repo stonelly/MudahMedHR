@@ -45,8 +45,9 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             return View();
         }
 
-        // GET: CorpGroupController/Create
-        public ActionResult Create()
+        // GET: CorpGroupController/CreateCorpGroup
+        [Route("create")]
+        public IActionResult CreateCorpGroup()
         {
             return View();
         }

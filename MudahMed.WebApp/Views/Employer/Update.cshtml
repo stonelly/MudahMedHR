@@ -92,14 +92,6 @@
                                             <input asp-for="WebsiteURL" class="form-control" />
                                             <span asp-validation-for="WebsiteURL" class="text-danger"></span>
                                         </div>
-                                        <div class="form-group">
-                                            <label asp-for="ProvinceId" class="control-label"></label><span class="text-danger">*</span>
-                                            <select asp-for="ProvinceId" class="form-control" asp-items="ViewBag.ProvinceId"></select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="CountryId" class="control-label"></label><span class="text-danger">*</span>
-                                            <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId"></select>
-                                        </div>
                                         <div class="form-group text-center" style="margin-bottom: 15px">
                                             <input style="background-color:forestgreen" type="button" onclick="onUpdate()" value="Update" class="btn btn-primary" />
                                         </div>

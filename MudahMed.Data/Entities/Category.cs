@@ -15,9 +15,6 @@ namespace MudahMed.Data.Entities
         [Required]
         public string Slug { get; set; }
         public bool? Disable { get; set; }
-        public ICollection<Skill>? Skills { get; set; }
-        public ICollection<Title>? Titles { get; set; }
-        public ICollection<Province>? Provinces { get; set; }
         public ICollection<AppUser>? AppUsers { get; set; }
     }
 }

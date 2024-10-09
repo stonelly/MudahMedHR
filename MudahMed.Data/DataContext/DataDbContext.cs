@@ -34,15 +34,8 @@ namespace MudahMed.Data.DataContext
             //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
-            modelBuilder.ApplyConfiguration(new BlogConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new CVConfiguration());
-            modelBuilder.ApplyConfiguration(new JobConfiguration());
-            modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
-            modelBuilder.ApplyConfiguration(new SkillConfiguration());
             modelBuilder.ApplyConfiguration(new TimeConfiguration());
-            modelBuilder.ApplyConfiguration(new TitleConfiguration());
-            modelBuilder.ApplyConfiguration(new CountryConfiguration());
             modelBuilder.ApplyConfiguration(new CorpConfiguration());
             modelBuilder.ApplyConfiguration(new CorpGroupConfiguration());
 
@@ -58,15 +51,8 @@ namespace MudahMed.Data.DataContext
         }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CV> CVs { get; set; }
-        public DbSet<Job> Jobs { get; set; }
-        public DbSet<Province> Provinces { get; set; }
-        public DbSet<Skill> Skills { get; set; }
         public DbSet<Time> Times { get; set; }
-        public DbSet<Title> Titles { get; set; }
-        public DbSet<Country> Countries { get; set; }
         public DbSet<Corp> Corps { get; set; }
         public DbSet<CorpGroup> CorpGroups { get; set; }
     }
