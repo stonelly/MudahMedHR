@@ -128,9 +128,9 @@ wwwroot/dist/
 # Ignore NuGet packages directory
 /packages/
 
-# Ignore local build artifacts
-bin/
-obj/
+# Ignore all files in obj directory
+**/obj/
+**/bin/
 
 # Ignore local settings
 *.user
