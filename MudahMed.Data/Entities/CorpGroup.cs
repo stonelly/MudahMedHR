@@ -10,83 +10,69 @@ namespace MudahMed.Data.Entities
     public class CorpGroup
     {
         [Key]
-        public int CorpGroupID { get; set; }
+        public int CorpGroupID { get; set; } // Primary Key
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "Please enter Group Corporation name")]
-        [StringLength(100, ErrorMessage = "Group Corporation name cannot be more than 100 characters.")]
+        [Display(Name = "Group Name")]
+        [Required]
+        [StringLength(100, ErrorMessage = "Group name is required and cannot exceed 100 characters.")]
         public string Name { get; set; }
 
-
-        [Display(Name = "Address 1")]
+        [Display(Name = "Address Line 1")]
         [StringLength(150)]
-        public string Addr1 { get; set; }
+        public string? Addr1 { get; set; }
 
-        [Display(Name = "Address 2")]
+        [Display(Name = "Address Line 2")]
         [StringLength(150)]
-        public string Addr2 { get; set; }
+        public string? Addr2 { get; set; }
 
-        [Display(Name = "Address 3")]
+        [Display(Name = "Address Line 3")]
         [StringLength(150)]
-        public string Addr3 { get; set; }
+        public string? Addr3 { get; set; }
 
-        [Display(Name = "Postcode")]
         [StringLength(10)]
-        public string Postcode { get; set; }
+        public string? postcode { get; set; }
 
-        [Display(Name = "City")]
         [StringLength(100)]
-        public string City { get; set; }
+        public string? city { get; set; }
 
-        [Display(Name = "State")]
         [StringLength(50)]
-        public string State { get; set; }
+        public string? state { get; set; }
 
-        [Display(Name = "Country")]
         [StringLength(100)]
-        public string Country { get; set; }
+        public string? country { get; set; }
 
-        [Display(Name = "Contact Person")]
         [StringLength(100)]
-        public string ContactPerson { get; set; }
+        public string? ContactPerson { get; set; }
 
-        [Display(Name = "Contact No")]
         [StringLength(50)]
-        public string ContactNo { get; set; }
+        public string? ContactNo { get; set; }
 
-        [Display(Name = "Fax")]
         [StringLength(20)]
-        public string Fax { get; set; }
+        public string? Fax { get; set; }
 
-        [Display(Name = "Registration No")]
         [StringLength(50)]
-        public string RegNo { get; set; }
+        public string? RegNo { get; set; }
 
-        [Display(Name = "TIN")]
         [StringLength(50)]
-        public string TIN { get; set; }
+        public string? TIN { get; set; }
 
-        [Display(Name = "Bank ID")]
         [StringLength(20)]
-        public string BankID { get; set; }
+        public string? BankID { get; set; }
 
-        [Display(Name = "Bank Account No")]
         [StringLength(30)]
-        public string BankAccNo { get; set; }
+        public string? BankAccNo { get; set; }
 
-        [Display(Name = "Email")]
         [StringLength(500)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
-        [Display(Name = "Created Date")]
-        public DateTime? CreatedDate { get; set; }
+        public DateTime? createdDate { get; set; }
 
-        [Display(Name = "Modified By")]
         [StringLength(200)]
-        public string LastModifiedBy { get; set; }
+        public string? LastModifiedBy { get; set; }
 
-        [Display(Name = "Modified Date")]
         public DateTime? LastModifiedDate { get; set; }
+        public Bank Bank { get; set; } // Navigation property
+
 
         // Navigation property for related Corporations
         public virtual ICollection<Corp> Corporations { get; set; }

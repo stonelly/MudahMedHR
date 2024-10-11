@@ -2,62 +2,72 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using MudahMed.Common.ConfigSetting;
 using MudahMed.Data.DataContext;
 using MudahMed.Data.Entities;
 using MudahMed.Data.ViewModel;
+using MudahMed.Data.ViewModel.Bank;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Area("Admin")]
-    [Route("admin/corpgroup")]
-    public class CorpGroupController : Controller
+    [Route("admin/bank")]
+    public class BankController : Controller
     {
         private readonly DataDbContext _context;
         private readonly int _maxResultLimit;
-        // GET: CorpGroupController
-        public CorpGroupController(DataDbContext context, IOptions<AppSettings> appSettings)
+
+        public BankController(DataDbContext context, int maxResultLimit)
         {
             _context = context;
-            _maxResultLimit = appSettings.Value.MaxResultLimit;
+            _maxResultLimit = maxResultLimit;
         }
-
-        [Route("list-corpgroup")]
-        [HttpGet]
-        public IActionResult ListCorpGroup(string corpGroupName)
+        // GET: BankController
+        public ActionResult Index(string searchName)
         {
-            //employer count
-            var corpGroups = _context.CorpGroups.AsQueryable();
+            var banks = _context.Banks.AsQueryable();
 
-            if (!String.IsNullOrEmpty(corpGroupName))
-                corpGroups = corpGroups.Where(c => c.Name.Contains(corpGroupName));
-            else
-              corpGroups = corpGroups.Take(_maxResultLimit);
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                banks = banks.Where(r => r.Bank_name.Contains(searchName));
+            }
 
-            return View(corpGroups);
+            List<BankViewModel> bankViewModels = new List<BankViewModel>();
+
+            foreach (var bank in banks)
+            {
+                bankViewModels.Add(new BankViewModel
+                {
+                    BankID = bank.Bank_id,
+                    BankName = bank.Bank_name,
+                    IsDisplay = bank.IsDisplay,
+                });
+            }
+            // If no search criteria provided, take only the limit
+            if (string.IsNullOrEmpty(searchName))
+            {
+                bankViewModels = bankViewModels.Take(_maxResultLimit).ToList();
+            }
+
+            return View(bankViewModels);
         }
 
-        // GET: CorpGroupController/Details/5
+        // GET: BankController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CorpGroupController/CreateCorpGroup
-        [Route("createCorpGroup")]
-        [HttpGet]
-        public IActionResult CreateCorpGroup()
+        // GET: BankController/Create
+        public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CorpGroupController/Create
-        [Route("createCorpGroup")]
+        // POST: BankController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateCorpGroup(IFormCollection collection)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
@@ -69,13 +79,13 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             }
         }
 
-        // GET: CorpGroupController/Edit/5
+        // GET: BankController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CorpGroupController/Edit/5
+        // POST: BankController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -90,13 +100,13 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             }
         }
 
-        // GET: CorpGroupController/Delete/5
+        // GET: BankController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CorpGroupController/Delete/5
+        // POST: BankController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
