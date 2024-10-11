@@ -1,0 +1,82 @@
+﻿@model MudahMed.Data.ViewModel.Bank.BankViewModel
+
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb items will be appended here -->
+    </ol>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Create Bank
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <form asp-action="CreateBank" method="post" id="form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="BankName" class="form-label"></label><span class="text-danger">*</span>
+                                <input asp-for="BankName" class="form-control" />
+                                <span asp-validation-for="BankName" class="text-danger"></span>
+                            </div>
+                            <div class="frame-wrap">
+                                <div class="demo">
+                                    <button class="btn btn-primary ml-auto" type="submit" onclick="onCreate(this)" value="Create">Create</button>
+                                    <a class="btn btn-primary ml-auto" style="background-color: gray;" href="/admin/bank/list-banks">
+                                        Back to List
+                                    </a>
+                                </div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function onCreate(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Add new bank?',
+                text: "Are you sure to add new bank?",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form
+                    $("#form").submit();
+
+                    // Check for validation errors after a slight delay
+                    setTimeout(function () {
+                        // Check if the form has validation errors
+                        if ($(".text-danger").length === 0) {
+                            Swal.fire(
+                                'Success!',
+                                '',
+                                'success'
+                            );
+                        }
+                    }, 100); // Adjust the delay if necessary
+                }
+            });
+        }
+    </script>
+}

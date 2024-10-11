@@ -29,17 +29,12 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             int pageSize = 5; //number of users per page
 
             var employer = (from emp in _context.AppUsers
-                        orderby emp.CreateDate descending
+                        orderby emp.CreatedDate descending
                         select new ListEmployersViewWModel()
                         {
                             Id = emp.Id,
                             FullName = emp.FullName,
-                            Description = emp.Description,
-                            Contact = emp.Contact,
-                            Location = emp.Location,
-                            WebsiteURL = emp.WebsiteURL,
-                            UrlAvatar = emp.UrlAvatar,
-                            RegisterDate = emp.CreateDate,
+                            RegisterDate = emp.CreatedDate,
                             Status = emp.Status
                         });
             var employers = await employer.ToListAsync();

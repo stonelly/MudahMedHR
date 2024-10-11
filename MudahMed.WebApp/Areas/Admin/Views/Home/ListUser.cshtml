@@ -31,12 +31,6 @@
                                         Clinic User
                                     </th>
                                     <th>
-                                        Address
-                                    </th>
-                                    <th>
-                                        Phone
-                                    </th>
-                                    <th>
                                         Email
                                     </th>
                                     <th>
@@ -53,16 +47,10 @@
                                             @Html.DisplayFor(modelItem => item.FullName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Address)
-                                        </td>
-                                        <td>
-                                            <div>@Html.Raw(item.Phone)</div>
-                                        </td>
-                                        <td>
                                             @Html.DisplayFor(modelItem => item.Email)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.CreateDate)
+                                            @Html.DisplayFor(modelItem => item.CreatedDate)
                                         </td>
 
                                     </tr>

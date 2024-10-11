@@ -11,5 +11,6 @@ namespace MudahMed.Common.Constants
         public static readonly string Role_Administrator = "Admin";
         public static readonly string Role_Corporate = "Corporate";
         public static readonly string Role_Clinic = "Clinic";
+        public static readonly string Role_Employee = "Employee";
     }
 }

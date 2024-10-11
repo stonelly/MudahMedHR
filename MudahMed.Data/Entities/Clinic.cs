@@ -10,7 +10,7 @@ namespace MudahMed.Data.Entities
     public class Clinic
     {
         [Key]
-        public string ClinicID { get; set; } // Primary Key
+        public int ClinicID { get; set; } // Primary Key
 
         [Display(Name = "Clinic Name")]
         [StringLength(100, ErrorMessage = "Clinic name cannot be more than 100 characters.")]

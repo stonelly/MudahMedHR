@@ -42,7 +42,6 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 {
                     { "userId", user.Id.ToString()},
                     { "Email", user.Email },
-                    { "Avatar", user.UrlAvatar },
                     { "RoleNames", string.Join(", ", roleNames) }
                 });
             }

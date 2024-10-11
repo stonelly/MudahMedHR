@@ -24,7 +24,6 @@ namespace MudahMed.WebApp.Controllers
 
             var employers = _context.AppUsers
                 .Where(e => e.Status == 2)
-                .OrderByDescending(e => e.Popular)
                 //.Include(e => e.Country)
                 .ToList();
 
@@ -42,11 +41,11 @@ namespace MudahMed.WebApp.Controllers
 
 
             var employer = await _context.AppUsers
-                .Where(e => e.Slug == slug)
+                //.Where(e => e.Slug == slug)
                 //.Include(e => e.Province)
                 //.Include(e => e.Country)
                 .FirstOrDefaultAsync();
-            employer.Popular++;
+            
             await _context.SaveChangesAsync();
 
             return View(employer);

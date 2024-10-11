@@ -20,7 +20,7 @@ namespace MudahMed.Data.Configurations
 
             // Configure properties
             builder.Property(x => x.ClinicID)
-                   .IsRequired();
+                   .ValueGeneratedOnAdd(); // Auto-increment
 
             builder.Property(x => x.Clinic_name)
                    .HasMaxLength(100);

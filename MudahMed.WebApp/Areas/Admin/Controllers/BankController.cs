@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using MudahMed.Common;
+using MudahMed.Common.ConfigSetting;
+using MudahMed.Common.Constants;
 using MudahMed.Data.DataContext;
 using MudahMed.Data.Entities;
 using MudahMed.Data.ViewModel;
@@ -11,19 +15,22 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Area("Admin")]
+    [Route("admin/authorization")]
     [Route("admin/bank")]
     public class BankController : Controller
     {
         private readonly DataDbContext _context;
         private readonly int _maxResultLimit;
 
-        public BankController(DataDbContext context, int maxResultLimit)
+        public BankController(DataDbContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
-            _maxResultLimit = maxResultLimit;
+            _maxResultLimit = appSettings.Value.MaxResultLimit;
         }
-        // GET: BankController
-        public ActionResult Index(string searchName)
+        
+        [Route("list-banks")]
+        [HttpGet]
+        public async Task<IActionResult> ListBanks(string searchName)
         {
             var banks = _context.Banks.AsQueryable();
 
@@ -58,66 +65,99 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             return View();
         }
 
-        // GET: BankController/Create
-        public ActionResult Create()
+        [Route("create-bank")]
+        [HttpGet]
+        public IActionResult CreateBank()
         {
             return View();
         }
 
         // POST: BankController/Create
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Route("create-bank")]
+        [HttpPost]
+        public async Task<IActionResult> CreateBank(BankViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Bank bank = new Bank
+                {
+                    Bank_name = model.BankName,
+                    IsDisplay = true
+                };
+
+
+                _context.Banks.Add(bank);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("ListBanks");
+
+            }
+
+            return View(model);
+        }
+
+        [Route("edit-bank/{id}")]
+        [HttpGet]
+        public async Task<IActionResult> EditBank(int id)
+        {
+
+            var bank = _context.Banks.Where(u => u.Bank_id == id).First();
+
+
+            var model = new BankViewModel
+            {
+                BankID = bank.Bank_id,
+                BankName = bank.Bank_name,
+                IsDisplay = bank.IsDisplay
+            };
+
+
+            return View(model);
+        }
+
+        [Route("edit-bank/{BankID}")]
+        [HttpPost]
+        public async Task<IActionResult> EditBank(BankViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Bank bank = _context.Banks.Where(u => u.Bank_id == model.BankID).First();
+                bank.Bank_name = model.BankName;
+                bank.IsDisplay = model.IsDisplay;
+                _context.Banks.Update(bank);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("ListBanks");
+            }
+
+            return View(model);
+        }
+
+        //[Route("delete-bank/{BankID}")]
+        [Route("delete-bank")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteBank(int BankID)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                Bank bankHere = _context.Banks.Where(u => u.Bank_id == BankID).First();
 
-        // GET: BankController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+                if (bankHere == null)
+                {
+                    ViewBag.ErrorMessage = $"Bank with Id = {BankID} cannot be found";
+                    return View("NotFound");
+                }
+                else
+                {
+                    _context.Banks.Remove(bankHere);
+                    _context.SaveChanges();
+                    return RedirectToAction("ListBanks");
+                }
 
-        // POST: BankController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (System.Exception)
             {
-                return View();
-            }
-        }
-
-        // GET: BankController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BankController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return View("NotFound");
             }
         }
     }

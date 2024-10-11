@@ -62,7 +62,7 @@ namespace MudahMed.Data.Configurations
                    .HasMaxLength(50);
 
             builder.Property(x => x.BankID)
-                   .HasMaxLength(20);
+                   .IsRequired();
 
             builder.Property(x => x.BankAccNo)
                    .HasMaxLength(30);

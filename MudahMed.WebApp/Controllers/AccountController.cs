@@ -50,13 +50,7 @@ namespace MudahMed.WebApp.Controllers
                 {
                     UserName = model.Email,
                     FullName = model.FullName,
-                    Slug = TextHelper.ToUnsignString(model.FullName).ToLower(),
-                    Age = model.Age,
-                    Address = model.Address,
                     Email = model.Email,
-                    CreateDate = DateTime.Now,
-                    Phone = model.Phone,
-                    UrlAvatar = "default_user.png",
                     Status = null
                 };
                 var result = await userManager.CreateAsync(user, model.Password);

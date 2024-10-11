@@ -49,11 +49,15 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         }
 
         [Route("list-employer")]
-        public IActionResult ListEmployer(int? page)
+        public async Task<IActionResult> ListEmployer(int? page)
         {
-            int pageSize = 5;
-            var employers = _context.AppUsers.OrderByDescending(e => e.Id).Where(e => e.Status == 2).ToList();
-            return View(employers.ToPagedList(page ?? 1, pageSize));
+            //var users = _context.AppUsers.OrderByDescending(u => u.Id).Where(u => u.Status != -1 && u.Status != 2).ToList();
+            //var users = await _appUserService.GetAllUsers();
+            var users = await _appUserService.GetUsersByRoleAsync(Role.Role_Corporate);
+
+            //var vms = _mapper.Map<IList<ListEmployersViewWModel>>(users);
+
+            return View(users);
         }
 
         [Route("list-user")]

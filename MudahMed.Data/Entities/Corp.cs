@@ -56,8 +56,8 @@ namespace MudahMed.Data.Entities
         [StringLength(50)]
         public string? Corp_TIN { get; set; }
 
-        [StringLength(20)]
-        public string? BankID { get; set; }
+        [Required]
+        public int BankID { get; set; }
 
         [StringLength(30)]
         public string? BankAccNo { get; set; }

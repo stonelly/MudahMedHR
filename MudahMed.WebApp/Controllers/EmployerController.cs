@@ -41,21 +41,9 @@ namespace MudahMed.WebApp.Controllers
 
             AppUser employer = _context.AppUsers.Where(u => u.Id == id).First();
             employer.FullName = model.FullName;
-            employer.Slug = TextHelper.ToUnsignString(model.FullName ?? employer.FullName).ToLower();
-            var image = UploadImage.UploadImageFile(model.UrlAvatar, POST_IMAGE_PATH);
-            employer.UrlAvatar = image;
             employer.Email = employer.UserName = model.Email;
             employer.NormalizedEmail = employer.NormalizedUserName = (employer.Email ?? model.Email).ToUpper();
-            employer.CreateDate = DateTime.Now;
-            employer.Description = model.Description;
-            employer.Contact = model.Contact;
-            employer.Content = model.Content;
-            employer.WorkingDays = model.WorkingDays;
-            employer.CompanySize = model.CompanySize;
-            employer.Location = model.Location;
-            employer.WebsiteURL = model.WebsiteURL;
-       
-            employer.Phone = model.Phone;
+            employer.CreatedDate = DateTime.Now;
             employer.Status = 1; // waiting to confirm
             _context.Update(employer);
             await _context.SaveChangesAsync();
@@ -92,20 +80,10 @@ namespace MudahMed.WebApp.Controllers
                 {
                     UserName = model.Email,
                     FullName = model.FullName,
-                    Slug = TextHelper.ToUnsignString(model.FullName).ToLower(),
-                    UrlAvatar = image,
                     Email = model.Email,
                     NormalizedEmail = model.Email.ToUpper(),
                     NormalizedUserName = model.Email.ToUpper(),
-                    CreateDate = DateTime.Now,
-                    Description = model.Description,
-                    Contact = model.Contact,
-                    Content = model.Content,
-                    WorkingDays = model.WorkingDays,
-                    CompanySize = model.CompanySize,
-                    Location = model.Location,
-                    WebsiteURL = model.WebsiteURL,
-                    Phone = model.Phone,
+                    CreatedDate = DateTime.Now,
                     Status = 1 // waiting to confirm
                 };
                 var result = await userManager.CreateAsync(employer, model.Password);
@@ -142,32 +120,12 @@ namespace MudahMed.WebApp.Controllers
             if (model.FullName != null)
             {
                 employer.FullName = model.FullName;
-                employer.Slug = TextHelper.ToUnsignString(model.FullName ?? employer.FullName).ToLower();
             }
 
-            //fix bug for null value
-            if (model.UrlAvatar != null)
-            {
-                string oldLogoImage = employer.UrlAvatar;
-                var newLogoImage = UploadImage.UploadImageFile(model.UrlAvatar, POST_IMAGE_PATH);
-                employer.UrlAvatar = newLogoImage;
-                if (!string.IsNullOrEmpty(oldLogoImage))
-                {
-                    string oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "employers", oldLogoImage);
-                    DeleteImage.DeleteImageFile(oldImagePath);
-                }
-            }
+           
             employer.Email = employer.UserName = model.Email;
             employer.NormalizedEmail = employer.NormalizedUserName = (employer.Email ?? model.Email).ToUpper();
 
-            employer.Description = model.Description;
-            employer.Contact = model.Contact;
-            employer.Content = model.Content;
-            employer.WorkingDays = model.WorkingDays;
-            employer.CompanySize = model.CompanySize;
-            employer.Location = model.Location;
-            employer.WebsiteURL = model.WebsiteURL;
-            employer.Phone = model.Phone;
             _context.Update(employer);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Home");

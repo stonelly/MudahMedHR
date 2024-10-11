@@ -37,7 +37,6 @@ namespace MudahMed.Data.DataContext
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
 
             modelBuilder.ApplyConfiguration(new BankConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ClinicConfiguration());
             modelBuilder.ApplyConfiguration(new CorpConfiguration());
             modelBuilder.ApplyConfiguration(new CorpGroupConfiguration());
@@ -46,7 +45,6 @@ namespace MudahMed.Data.DataContext
             modelBuilder.ApplyConfiguration(new DrugConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new IndustryFieldConfiguration());
-            modelBuilder.ApplyConfiguration(new TimeConfiguration());
 
             // Identity configurations
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
@@ -56,10 +54,10 @@ namespace MudahMed.Data.DataContext
             modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
 
             // Configure relationships with Bank
-            modelBuilder.Entity<Clinic>().HasOne(c => c.Bank).WithMany(b => b.Clinics).HasForeignKey(c => c.BankID).OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes if needed
-            modelBuilder.Entity<Corp>().HasOne(c => c.Bank).WithMany(b => b.Corporations).HasForeignKey(c => c.BankID).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<CorpGroup>().HasOne(cg => cg.Bank).WithMany(b => b.CorpGroups).HasForeignKey(cg => cg.BankID).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Employee>().HasOne(e => e.Bank).WithMany(b => b.Employees).HasForeignKey(e => e.BankID).OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Clinic>().HasOne(c => c.Bank).WithMany(b => b.Clinics).HasForeignKey(c => c.BankID).OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes if needed
+            //modelBuilder.Entity<Corp>().HasOne(c => c.Bank).WithMany(b => b.Corporations).HasForeignKey(c => c.BankID).OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<CorpGroup>().HasOne(cg => cg.Bank).WithMany(b => b.CorpGroups).HasForeignKey(cg => cg.BankID).OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Employee>().HasOne(e => e.Bank).WithMany(b => b.Employees).HasForeignKey(e => e.BankID).OnDelete(DeleteBehavior.Restrict);
 
 
             //Data seeding
@@ -68,7 +66,6 @@ namespace MudahMed.Data.DataContext
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Bank> Banks { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<Corp> Corps { get; set; }
         public DbSet<CorpGroup> CorpGroups { get; set; }
@@ -77,6 +74,5 @@ namespace MudahMed.Data.DataContext
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<IndustryField> IndustryFields { get; set; }
-        public DbSet<Time> Times { get; set; }
     }
 }

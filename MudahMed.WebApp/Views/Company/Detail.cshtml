@@ -30,42 +30,11 @@
         <div class="row">
             <div class="col-lg-8 post-list blog-post-list">
                 <div class="single-post">
-                    <img class="img-fluid" src="https://localhost:7211/images/employers/@Model.UrlAvatar" alt="flag">
                     <hr />
                     <h3 style="text-align: center; margin-top: 10px; margin-bottom: 5px">@Model.FullName</h3>
-                    <ul class="cat-list">
-                        @if (ViewBag.CountJob == 1)
-                        {
-                            <li class="col-xs-12 col-4"><a href="/job?slug=@Model.Slug">@ViewBag.CountJob job opening</a></li>
-
-                        }
-                        else if (ViewBag.CountJob > 1)
-                        {
-                            <li class="col-xs-12 col-4"><a href="/job?slug=@Model.Slug">@ViewBag.CountJob jobs opening</a></li>
-                        }
-                    </ul>
-                    <ul class="tags">
-                        <li><a target="_blank" href="https://@Model.WebsiteURL/">@Model.WebsiteURL</a></li> - Established: @Model.CreateDate  
-                    </ul>
+                
                     <div class="content-wrap">
                         <h6>Company overview:</h6>
-                        <blockquote class="generic-blockquote">
-                            <p>@Html.Raw(Model.Description)</p>
-                            <p>@Html.Raw(Model.Content)</p>
-                        </blockquote>
-
-                        <h6>Location:</h6>
-                        <p>@Html.Raw(Model.Location)</p>
-
-                        <h6>Company size:</h6>
-                        <p>@Html.Raw(Model.CompanySize)</p>
-
-                        <h6>Working days:</h6>
-                        <p>@Html.Raw(Model.WorkingDays)</p>
-
-
-                        <h6>Contact:</h6>
-                        <p>@Html.Raw(Model.Contact)</p>
                         
                     </div>
                     <hr />
