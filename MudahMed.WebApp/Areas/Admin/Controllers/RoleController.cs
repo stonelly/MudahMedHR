@@ -246,15 +246,15 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             return RedirectToAction("EditRole", new { Id = roleId });
         }
 
-        [Route("delete-role/{id}")]
+        [Route("delete-role")]
         [HttpGet]
-        public async Task<IActionResult> DeleteRole(Guid id)
+        public async Task<IActionResult> DeleteRole(Guid roleID)
         {
-            var role = await roleManager.FindByIdAsync(id.ToString());
+            var role = await roleManager.FindByIdAsync(roleID.ToString());
 
             if (role == null)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                ViewBag.ErrorMessage = $"Role with Id = {roleID} cannot be found";
                 return View("NotFound");
             }
             else
