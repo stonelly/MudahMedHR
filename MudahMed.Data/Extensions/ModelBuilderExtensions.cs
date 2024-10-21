@@ -127,7 +127,7 @@ namespace MudahMed.Data.Extensions
                 FullName = "HR Adminitrator",
                 RefTable = AppUserRefference.tblCorp,
                 RefId = 1,
-                Status = -1 //corporate status
+                Status = 0 //corporate status
             });
 
             modelBuilder.Entity<Clinic>().HasData(new Clinic
@@ -149,7 +149,7 @@ namespace MudahMed.Data.Extensions
                 FullName = "Clinic Adminitrator",
                 RefTable = AppUserRefference.tblClinic,
                 RefId = 1,
-                Status = -1 //clinic status
+                Status = 0 //clinic status
             });
 
             modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>

@@ -13,8 +13,8 @@
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>@* 
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> *@
                     </div>
                 </div>
                 <div class="panel-container show">
@@ -104,9 +104,9 @@
 </div>
 
 @section Scripts {
-    @{
+@*     @{
         await Html.RenderPartialAsync("_DatatableScriptsPartial");
-    } 
+    }  *@
     <script>
         function confirmDelete(id) {
             document.getElementById('BankID').value = id;

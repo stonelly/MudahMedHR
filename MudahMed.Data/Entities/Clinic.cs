@@ -164,5 +164,7 @@ namespace MudahMed.Data.Entities
         public bool? IsXray { get; set; }
         public Bank Bank { get; set; } // Navigation property
 
+        // If a clinic can have users, add this
+        public virtual ICollection<AppUser> Users { get; set; } = new List<AppUser>();
     }
 }

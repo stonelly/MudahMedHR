@@ -84,6 +84,8 @@ namespace MudahMed.Data.Entities
         public Bank Bank { get; set; } // Navigation property
 
         public virtual CorpGroup CorpGroup { get; set; }
+        // If a clinic can have users, add this
+        public virtual ICollection<AppUser> Users { get; set; } = new List<AppUser>();
     }
 
 }

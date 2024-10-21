@@ -22,5 +22,8 @@ namespace MudahMed.Data.Entities
         public int? RefId { get; set; } // Foreign key corresponding to the referenced table
         public int? Status { set; get; } // 0 = denied, 1 = waiting, 2 = confirmed, -1 = admin, null = default
 
+        // Navigation properties
+        public virtual Corp? Corp { get; set; }
+        public virtual Clinic? Clinic { get; set; }
     }
 }
