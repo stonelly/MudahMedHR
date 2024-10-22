@@ -33,8 +33,8 @@
                             </div>
                             <div class="frame-wrap demo">
                                 <div class="demo">
+                                    <label asp-for="IsDisplay" class="form-label"></label><span class="text-danger">*</span>
                                     <div class="custom-control custom-switch">
-                                        <label asp-for="IsDisplay" class="form-label"></label><span class="text-danger">*</span>
                                         <input type="checkbox" class="custom-control-input" id="IsDisplay" asp-for="IsDisplay" />
                                         <label class="custom-control-label" for="IsDisplay">Checked</label>
                                     </div>
@@ -42,7 +42,6 @@
                             </div>
                             <div class="frame-wrap">
                                 <div class="demo">
-                                <label asp-for="BankName" class="form-label"></label><span class="text-danger">*</span>
                                     <button class="btn btn-primary ml-auto" type="submit" onclick="onEdit(this)" value="Edit">Edit</button>
                                     <a class="btn btn-primary ml-auto" style="background-color: gray;" href="/admin/bank/list-banks">
                                         Back to List

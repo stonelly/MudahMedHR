@@ -1,0 +1,229 @@
+﻿@model MudahMed.Data.ViewModel.Clinic.ClinicViewModel
+
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb items will be appended here -->
+    </ol>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Create Clinic
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <form asp-action="CreateClinic" method="post" id="form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicName" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="ClinicName" class="form-control" />
+                                        <span asp-validation-for="ClinicName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicAddr1" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="ClinicAddr1" class="form-control" />
+                                        <span asp-validation-for="ClinicAddr1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicAddr2" class="form-label"></label>
+                                        <input asp-for="ClinicAddr2" class="form-control" />
+                                        <span asp-validation-for="ClinicAddr2" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicAddr3" class="form-label"></label>
+                                        <input asp-for="ClinicAddr3" class="form-control" />
+                                        <span asp-validation-for="ClinicAddr3" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Postcode" class="form-label"></label>
+                                        <input asp-for="Postcode" class="form-control" />
+                                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="City" class="form-label"></label>
+                                        <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="State" class="form-label"></label>
+                                        <input asp-for="State" class="form-control" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Country" class="form-label"></label>
+                                        <input asp-for="Country" class="form-control" />
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ContactPerson" class="form-label"></label>
+                                        <input asp-for="ContactPerson" class="form-control" />
+                                        <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicContactNo" class="form-label"></label>
+                                        <input asp-for="ClinicContactNo" class="form-control" />
+                                        <span asp-validation-for="ClinicContactNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicFax" class="form-label"></label>
+                                        <input asp-for="ClinicFax" class="form-control" />
+                                        <span asp-validation-for="ClinicFax" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicRegNo" class="form-label"></label>
+                                        <input asp-for="ClinicRegNo" class="form-control" />
+                                        <span asp-validation-for="ClinicRegNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ClinicTIN" class="form-label"></label>
+                                        <input asp-for="ClinicTIN" class="form-control" />
+                                        <span asp-validation-for="ClinicTIN" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="BankID" class="form-label"></label>
+                                        <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankId"></select>
+                                        <span asp-validation-for="BankID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="BankAccNo" class="form-label"></label>
+                                        <input asp-for="BankAccNo" class="form-control" />
+                                        <span asp-validation-for="BankAccNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Latitude" class="form-label"></label>
+                                        <input asp-for="Latitude" class="form-control" type="number" step="any" />
+                                        <span asp-validation-for="Latitude" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Longitude" class="form-label"></label>
+                                        <input asp-for="Longitude" class="form-control" type="number" step="any" />
+                                        <span asp-validation-for="Longitude" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- You can add more items to the second column if needed -->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="frame-wrap">
+                                        <div class="demo">
+                                            <button class="btn btn-primary ml-auto" type="submit" onclick="onCreate(this)" value="Create">Create</button>
+                                            <a class="btn btn-primary ml-auto" style="background-color: gray;" href="/admin/clinic/list-clinics">
+                                                Back to List
+                                            </a>
+                                        </div>
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function onCreate(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Add new clinic?',
+                text: "Are you sure to add new clinic?",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form
+                    $("#form").submit();
+
+                    // Check for validation errors after a slight delay
+                    setTimeout(function () {
+                        // Check if the form has validation errors
+                        if ($(".text-danger").length === 0) {
+                            Swal.fire(
+                                'Success!',
+                                '',
+                                'success'
+                            );
+                        }
+                    }, 100); // Adjust the delay if necessary
+                }
+            });
+        }
+    </script>
+}

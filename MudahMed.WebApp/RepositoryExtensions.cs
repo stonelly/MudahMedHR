@@ -10,6 +10,9 @@ namespace MudahMed.WebApp
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IAppUserRepository, AppUserRepository>();
+            services.AddScoped<IClinicRepository, ClinicRepository>();
+            services.AddScoped<IClinicUserRepository, ClinicUserRepository>();
+            services.AddScoped<ICorpUserRepository, CorpUserRepository>();
             // Register other repositories here
         }
     }
