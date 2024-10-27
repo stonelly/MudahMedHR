@@ -1,4 +1,6 @@
-﻿using MudahMed.Data.DataContext;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using MudahMed.Data.DataContext;
 using MudahMed.Data.Entities;
 using MudahMed.Data.Repositories.Abstract;
 using MudahMed.Data.ViewModel.Clinic;
@@ -6,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,25 +17,27 @@ namespace MudahMed.Data.Repositories
     public class ClinicRepository : IClinicRepository
     {
         private readonly DataDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ClinicRepository(DataDbContext context)
+        public ClinicRepository(DataDbContext context, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
-
-        // Get list of clinics
-        public IList<ClinicViewModel> GetClinics()
+        public Task<IQueryable<ClinicViewModel>> GetClinicsAsync()
         {
-            return _context.Clinics
+            return Task.FromResult(_context.Clinics
                 .Select(c => new ClinicViewModel
                 {
                     ClinicID = c.ClinicID,
-                    ClinicName = c.Clinic_name,
+                    ClinicName = c.Clinic_name ?? string.Empty,
                     ClinicAddr1 = c.Clinic_addr1,
                     ClinicAddr2 = c.Clinic_addr2,
                     ClinicAddr3 = c.Clinic_addr3,
                     Postcode = c.postcode,
-                    City = c.city,
+                    City = c.city ?? string.Empty,
                     State = c.state,
                     Country = c.country,
                     ContactPerson = c.ContactPerson,
@@ -48,7 +53,7 @@ namespace MudahMed.Data.Repositories
                     ClinicGroup = c.ClinicGroup,
                     Latitude = c.Latitude,
                     Longitude = c.Longitude,
-                    Is24Hour = c.Is24Hour,
+                    Is24Hour = c.Is24Hour ?? false,
                     RenderedService = c.rendered_svc,
                     PanelType = c.panel_type,
                     PayeeName = c.PayeeName,
@@ -69,36 +74,45 @@ namespace MudahMed.Data.Repositories
                     LocumDoc1OHD = c.LocumDoc1OHD,
                     LocumDoc2OHD = c.LocumDoc2OHD,
                     SSMNo = c.SSMNo,
-                    IsPCD = c.IsPCD,
-                    IsIVD = c.IsIVD,
-                    IsOT = c.IsOT,
-                    IsCPR = c.IsCPR,
-                    IsENT = c.IsENT,
-                    IsUFEME = c.IsUFEME,
-                    IsAvailAN = c.IsAvailAN,
-                    IsAvailMS = c.IsAvailMS,
-                    IsAvailMC = c.IsAvailMC,
-                    IsSpiro = c.IsSpiro,
-                    IsAudF = c.IsAudF,
-                    IsLocDoc = c.IsLocDoc,
-                    IsOHDDoc = c.IsOHDDoc,
-                    IsECG = c.IsECG,
-                    IsFBHAM = c.IsFBHAM,
-                    IsAvailFMDoc = c.IsAvailFMDoc,
-                    IsNebulizer = c.IsNebulizer,
-                    IsUltraSound = c.IsUltraSound,
-                    IsPapSme = c.IsPapSme,
-                    IsXrayReader = c.IsXrayReader,
-                    IsXray = c.IsXray
-                }).ToList();
+                    IsPCD = c.IsPCD ?? false,
+                    IsIVD = c.IsIVD ?? false,
+                    IsOT = c.IsOT ?? false,
+                    IsCPR = c.IsCPR ?? false,
+                    IsENT = c.IsENT ?? false,
+                    IsUFEME = c.IsUFEME ?? false        ,
+                    IsAvailAN = c.IsAvailAN ?? false,
+                    IsAvailMS = c.IsAvailMS ?? false,
+                    IsAvailMC = c.IsAvailMC ?? false,
+                    IsSpiro = c.IsSpiro ?? false,
+                    IsAudF = c.IsAudF ?? false,
+                    IsLocDoc = c.IsLocDoc ?? false,
+                    IsOHDDoc = c.IsOHDDoc == null ? false : (bool)c.IsOHDDoc,
+                    IsECG = c.IsECG ?? false,
+                    IsFBHAM = c.IsFBHAM ?? false,
+                    IsAvailFMDoc = c.IsAvailFMDoc ?? false,
+                    IsNebulizer = c.IsNebulizer ?? false,
+                    IsUltraSound = c.IsUltraSound ?? false,
+                    IsPapSme = c.IsPapSme ?? false,
+                    IsXrayReader = c.IsXrayReader ?? false,
+                    IsXray = c.IsXray ?? false,
+                    LastModifiedBy = c.LastModifiedBy,
+                    LastModifiedDate = c.LastModifiedDate
+                }));
         }
 
         // Get a clinic by ID
-        public ClinicViewModel GetClinicById(int id)
+        public async Task<ClinicViewModel> GetClinicById(int id)
         {
-            var clinic = _context.Clinics.Find(id);
+            var clinic = await _context.Clinics.FindAsync(id);
+            String lastModidy = string.Empty;
+
             if (clinic == null) return null;
 
+            if (!String.IsNullOrEmpty(clinic.LastModifiedBy))
+            {
+                var user = await _userManager.FindByIdAsync(clinic.LastModifiedBy);
+                lastModidy = user?.FullName; // Returns the username or null if not found
+            }
             return new ClinicViewModel
             {
                 ClinicID = clinic.ClinicID,
@@ -123,7 +137,7 @@ namespace MudahMed.Data.Repositories
                 ClinicGroup = clinic.ClinicGroup,
                 Latitude = clinic.Latitude,
                 Longitude = clinic.Longitude,
-                Is24Hour = clinic.Is24Hour,
+                Is24Hour = clinic.Is24Hour == null ? false : (bool)clinic.Is24Hour,
                 RenderedService = clinic.rendered_svc,
                 PanelType = clinic.panel_type,
                 PayeeName = clinic.PayeeName,
@@ -144,33 +158,43 @@ namespace MudahMed.Data.Repositories
                 LocumDoc1OHD = clinic.LocumDoc1OHD,
                 LocumDoc2OHD = clinic.LocumDoc2OHD,
                 SSMNo = clinic.SSMNo,
-                IsPCD = clinic.IsPCD,
-                IsIVD = clinic.IsIVD,
-                IsOT = clinic.IsOT,
-                IsCPR = clinic.IsCPR,
-                IsENT = clinic.IsENT,
-                IsUFEME = clinic.IsUFEME,
-                IsAvailAN = clinic.IsAvailAN,
-                IsAvailMS = clinic.IsAvailMS,
-                IsAvailMC = clinic.IsAvailMC,
-                IsSpiro = clinic.IsSpiro,
-                IsAudF = clinic.IsAudF,
-                IsLocDoc = clinic.IsLocDoc,
-                IsOHDDoc = clinic.IsOHDDoc,
-                IsECG = clinic.IsECG,
-                IsFBHAM = clinic.IsFBHAM,
-                IsAvailFMDoc = clinic.IsAvailFMDoc,
-                IsNebulizer = clinic.IsNebulizer,
-                IsUltraSound = clinic.IsUltraSound,
-                IsPapSme = clinic.IsPapSme,
-                IsXrayReader = clinic.IsXrayReader,
-                IsXray = clinic.IsXray
+                IsPCD = clinic.IsPCD == null ? false : (bool)clinic.IsPCD,
+                IsIVD = clinic.IsIVD == null ? false : (bool)clinic.IsIVD,
+                IsOT = clinic.IsOT == null ? false : (bool)clinic.IsOT,
+                IsCPR = clinic.IsCPR == null ? false : (bool)clinic.IsCPR,
+                IsENT = clinic.IsENT == null ? false : (bool)clinic.IsENT,
+                IsUFEME = clinic.IsUFEME == null ? false : (bool)clinic.IsUFEME,
+                IsAvailAN = clinic.IsAvailAN == null ? false : (bool)clinic.IsAvailAN,
+                IsAvailMS = clinic.IsAvailMS == null ? false : (bool)clinic.IsAvailMS,
+                IsAvailMC = clinic.IsAvailMC == null ? false : (bool)clinic.IsAvailMC,
+                IsSpiro = clinic.IsSpiro == null ? false : (bool)clinic.IsSpiro,
+                IsAudF = clinic.IsAudF == null ? false : (bool)clinic.IsAudF,
+                IsLocDoc = clinic.IsLocDoc == null ? false : (bool)clinic.IsLocDoc,
+                IsOHDDoc = clinic.IsOHDDoc == null ? false : (bool)clinic.IsOHDDoc,
+                IsECG = clinic.IsECG == null ? false : (bool)clinic.IsECG,
+                IsFBHAM = clinic.IsFBHAM == null ? false : (bool)clinic.IsFBHAM,
+                IsAvailFMDoc = clinic.IsAvailFMDoc == null ? false : (bool)clinic.IsAvailFMDoc,
+                IsNebulizer = clinic.IsNebulizer == null ? false : (bool)clinic.IsNebulizer,
+                IsUltraSound = clinic.IsUltraSound == null ? false : (bool)clinic.IsUltraSound,
+                IsPapSme = clinic.IsPapSme == null ? false : (bool)clinic.IsPapSme,
+                IsXrayReader = clinic.IsXrayReader == null ? false : (bool)clinic.IsXrayReader,
+                IsXray = clinic.IsXray == null ? false : (bool)clinic.IsXray,
+                LastModifiedBy = lastModidy,
+                LastModifiedDate = clinic.LastModifiedDate
             };
         }
 
         // Create a new clinic
         public async Task CreateClinicAsync(ClinicViewModel model)
         {
+            // Get the currently logged-in user
+            var currentUser = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+            if (currentUser != null)
+            {
+                model.LastModifiedBy = currentUser.Id.ToString(); // or use currentUser.Id if needed
+            }
+
             var clinic = new Clinic
             {
                 Clinic_name = model.ClinicName,
@@ -188,7 +212,7 @@ namespace MudahMed.Data.Repositories
                 Corp_TIN = model.ClinicTIN,
                 BankID = model.BankID,
                 BankAccNo = model.BankAccNo,
-                IsActive = model.IsActive,
+                IsActive = true,
                 RecruitDate = model.RecruitDate,
                 RemovedDate = model.RemovedDate,
                 ClinicGroup = model.ClinicGroup,
@@ -235,7 +259,9 @@ namespace MudahMed.Data.Repositories
                 IsUltraSound = model.IsUltraSound,
                 IsPapSme = model.IsPapSme,
                 IsXrayReader = model.IsXrayReader,
-                IsXray = model.IsXray
+                IsXray = model.IsXray,
+                LastModifiedBy = model.LastModifiedBy,
+                LastModifiedDate = DateTime.Now
             };
 
             await _context.Clinics.AddAsync(clinic);
@@ -247,6 +273,14 @@ namespace MudahMed.Data.Repositories
         {
             var clinic = await _context.Clinics.FindAsync(model.ClinicID);
             if (clinic == null) return;
+
+            // Get the currently logged-in user
+            var currentUser = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+            if (currentUser != null)
+            {
+                model.LastModifiedBy = currentUser.Id.ToString(); // or use currentUser.Id if needed
+            }
 
             clinic.Clinic_name = model.ClinicName;
             clinic.Clinic_addr1 = model.ClinicAddr1;
@@ -311,6 +345,8 @@ namespace MudahMed.Data.Repositories
             clinic.IsPapSme = model.IsPapSme;
             clinic.IsXrayReader = model.IsXrayReader;
             clinic.IsXray = model.IsXray;
+            clinic.LastModifiedDate = DateTime.Now;
+            clinic.LastModifiedBy = model.LastModifiedBy;
 
             await _context.SaveChangesAsync();
         }

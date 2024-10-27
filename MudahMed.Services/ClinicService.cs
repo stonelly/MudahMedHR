@@ -18,14 +18,14 @@ namespace MudahMed.Services
             _clinicRepository = clinicRepository;
         }
 
-        public async Task<IList<ClinicViewModel>> GetAllClinicsAsync()
+        public async Task<IQueryable<ClinicViewModel>> GetAllClinicsAsync()
         {
-            return await Task.Run(() => _clinicRepository.GetClinics());
+            return await _clinicRepository.GetClinicsAsync();
         }
 
         public async Task<ClinicViewModel> GetClinicByIdAsync(int id)
         {
-            return await Task.Run(() => _clinicRepository.GetClinicById(id));
+            return await _clinicRepository.GetClinicById(id);
         }
 
         public async Task CreateClinicAsync(ClinicViewModel model)

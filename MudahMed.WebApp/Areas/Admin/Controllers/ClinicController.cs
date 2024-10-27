@@ -6,6 +6,7 @@ using MudahMed.Common.ConfigSetting;
 using MudahMed.Data.DataContext;
 using MudahMed.Data.ViewModel.Clinic;
 using MudahMed.Services.Abstract;
+using System.Data.Entity;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
@@ -30,7 +31,11 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> ListClinics(string clinicName, string city)
         {
-            var clinics = await _clinicService.GetAllClinicsAsync();
+            int limit = _maxResultLimit;
+            if (string.IsNullOrEmpty(clinicName) && string.IsNullOrEmpty(city))
+                limit = int.MaxValue;
+
+            var clinics = _clinicService.GetAllClinicsAsync().Result.Take(limit).ToList();
 
             // Filter clinics based on the search criteria
             if (!string.IsNullOrEmpty(clinicName))
@@ -41,12 +46,6 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(city))
             {
                 clinics = clinics.Where(c => c.City.Contains(city, StringComparison.OrdinalIgnoreCase)).ToList();
-            }
-
-            // If no search criteria provided, take only the limit
-            if (string.IsNullOrEmpty(clinicName) && string.IsNullOrEmpty(city))
-            {
-                clinics = clinics.Take(_maxResultLimit).ToList();
             }
 
             return View(clinics);
@@ -70,10 +69,66 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 // Call the service to create the clinic
                 await _clinicService.CreateClinicAsync(model);
 
-                return RedirectToAction("list-clinics"); // Redirect to the list of clinics
+                return RedirectToAction("ListClinics"); // Redirect to the list of clinics
             }
 
             return View(model); // If the model state is invalid, return the view with the model
+        }
+
+
+        [Route("edit-clinic/{id}")]
+        [HttpGet]
+        public async Task<IActionResult> EditClinic(int id)
+        {
+
+            ViewData["BankId"] = new SelectList(_context.Banks.OrderBy(p => p.Bank_id), "Bank_id", "Bank_name");
+            var model = await _clinicService.GetClinicByIdAsync(id);
+
+            return View(model);
+        }
+
+        [Route("edit-clinic/{ClinicID}")]
+        [HttpPost]
+        public async Task<IActionResult> EditClinic(ClinicViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _clinicService.UpdateClinicAsync(model);
+
+                return RedirectToAction("ListClinics");
+            }
+
+            return View(model);
+        }
+
+        //[Route("delete-clinic/{ClinicID}")]
+        [Route("delete-clinic")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteClinic(int ClinicID)
+        {
+            try
+            {
+                var model = await _clinicService.GetClinicByIdAsync(ClinicID);
+
+
+                if (model == null)
+                {
+                    ViewBag.ErrorMessage = $"Clinic with Id = {ClinicID} cannot be found";
+                    return View("NotFound");
+                }
+                else
+                {
+                    model.RemovedDate = DateTime.Now;
+                    model.IsActive = false;
+                    await _clinicService.UpdateClinicAsync(model);
+                    return RedirectToAction("ListClinics");
+                }
+
+            }
+            catch (System.Exception)
+            {
+                return View("NotFound");
+            }
         }
     }
 }

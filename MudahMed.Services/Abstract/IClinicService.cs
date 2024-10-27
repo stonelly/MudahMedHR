@@ -9,7 +9,7 @@ namespace MudahMed.Services.Abstract
 {
     public interface IClinicService
     {
-        Task<IList<ClinicViewModel>> GetAllClinicsAsync();
+        Task<IQueryable<ClinicViewModel>> GetAllClinicsAsync();
         Task<ClinicViewModel> GetClinicByIdAsync(int id);
         Task CreateClinicAsync(ClinicViewModel model);
         Task UpdateClinicAsync(ClinicViewModel model);

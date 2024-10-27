@@ -10,8 +10,8 @@ namespace MudahMed.Data.Repositories.Abstract
 {
     public interface IClinicRepository
     {
-        IList<ClinicViewModel> GetClinics();
-        ClinicViewModel GetClinicById(int id);
+        Task<IQueryable<ClinicViewModel>> GetClinicsAsync();
+        Task<ClinicViewModel> GetClinicById(int id);
         Task CreateClinicAsync(ClinicViewModel model);
         Task UpdateClinicAsync(ClinicViewModel model);
     }

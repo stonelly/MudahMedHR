@@ -9,7 +9,7 @@
             <div id="panel-1" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        Create Clinic
+                        Edit Clinic
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <form asp-action="CreateClinic" method="post" id="form">
+                        <form method="post" enctype="multipart/form-data" id="form">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="mb-6">
                                 <!------------------------------------- Clinic Information ------------------------------------------>
@@ -27,93 +27,93 @@
                                 <div class="form-row">
 
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicName" class="form-label"></label><span class="text-danger">*</span>
-                                            <input asp-for="ClinicName" class="form-control" />
-                                            <span asp-validation-for="ClinicName" class="text-danger"></span>
-                                  
+                                        <label asp-for="ClinicName" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="ClinicName" class="form-control" />
+                                        <span asp-validation-for="ClinicName" class="text-danger"></span>
+
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicAddr1" class="form-label"></label><span class="text-danger">*</span>
-                                            <input asp-for="ClinicAddr1" class="form-control" />
-                                            <span asp-validation-for="ClinicAddr1" class="text-danger"></span>
-                                  
+                                        <label asp-for="ClinicAddr1" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="ClinicAddr1" class="form-control" />
+                                        <span asp-validation-for="ClinicAddr1" class="text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicAddr2" class="form-label"></label>
-                                            <input asp-for="ClinicAddr2" class="form-control" />
-                                            <span asp-validation-for="ClinicAddr2" class="text-danger"></span>
-                                  
+                                        <label asp-for="ClinicAddr2" class="form-label"></label>
+                                        <input asp-for="ClinicAddr2" class="form-control" />
+                                        <span asp-validation-for="ClinicAddr2" class="text-danger"></span>
+
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicAddr3" class="form-label"></label>
-                                            <input asp-for="ClinicAddr3" class="form-control" />
-                                            <span asp-validation-for="ClinicAddr3" class="text-danger"></span>
-                                   
+                                        <label asp-for="ClinicAddr3" class="form-label"></label>
+                                        <input asp-for="ClinicAddr3" class="form-control" />
+                                        <span asp-validation-for="ClinicAddr3" class="text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="Postcode" class="form-label"></label>
-                                            <input asp-for="Postcode" class="form-control" />
-                                            <span asp-validation-for="Postcode" class="text-danger"></span>
-                                  
+                                        <label asp-for="Postcode" class="form-label"></label>
+                                        <input asp-for="Postcode" class="form-control" />
+                                        <span asp-validation-for="Postcode" class="text-danger"></span>
+
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="City" class="form-label"></label>
-                                            <input asp-for="City" class="form-control" />
-                                            <span asp-validation-for="City" class="text-danger"></span>
-                                   
+                                        <label asp-for="City" class="form-label"></label>
+                                        <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="State" class="form-label"></label>
-                                            <input asp-for="State" class="form-control" />
-                                            <span asp-validation-for="State" class="text-danger"></span>
-                                   
+                                        <label asp-for="State" class="form-label"></label>
+                                        <input asp-for="State" class="form-control" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="Country" class="form-label"></label>
-                                            <input asp-for="Country" class="form-control" />
-                                            <span asp-validation-for="Country" class="text-danger"></span>
-                                   
+                                        <label asp-for="Country" class="form-label"></label>
+                                        <input asp-for="Country" class="form-control" />
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ContactPerson" class="form-label"></label>
-                                            <input asp-for="ContactPerson" class="form-control" />
-                                            <span asp-validation-for="ContactPerson" class="text-danger"></span>
-                                   
+                                        <label asp-for="ContactPerson" class="form-label"></label>
+                                        <input asp-for="ContactPerson" class="form-control" />
+                                        <span asp-validation-for="ContactPerson" class="text-danger"></span>
+
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicContactNo" class="form-label"></label>
-                                            <input asp-for="ClinicContactNo" class="form-control" />
-                                            <span asp-validation-for="ClinicContactNo" class="text-danger"></span>
-                                   
-                                    </div>
-                                    </div>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicFax" class="form-label"></label>
-                                            <input asp-for="ClinicFax" class="form-control" />
-                                            <span asp-validation-for="ClinicFax" class="text-danger"></span>
-                                  
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicRegNo" class="form-label"></label>
-                                            <input asp-for="ClinicRegNo" class="form-control" />
-                                            <span asp-validation-for="ClinicRegNo" class="text-danger"></span>
-                                  
+                                        <label asp-for="ClinicContactNo" class="form-label"></label>
+                                        <input asp-for="ClinicContactNo" class="form-control" />
+                                        <span asp-validation-for="ClinicContactNo" class="text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
-                                            <label asp-for="ClinicTIN" class="form-label"></label>
-                                            <input asp-for="ClinicTIN" class="form-control" />
-                                            <span asp-validation-for="ClinicTIN" class="text-danger"></span>
+                                        <label asp-for="ClinicFax" class="form-label"></label>
+                                        <input asp-for="ClinicFax" class="form-control" />
+                                        <span asp-validation-for="ClinicFax" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="ClinicRegNo" class="form-label"></label>
+                                        <input asp-for="ClinicRegNo" class="form-control" />
+                                        <span asp-validation-for="ClinicRegNo" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="ClinicTIN" class="form-label"></label>
+                                        <input asp-for="ClinicTIN" class="form-control" />
+                                        <span asp-validation-for="ClinicTIN" class="text-danger"></span>
 
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                             <span asp-validation-for="RecruitDate" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    @* <div class="col-md-6 mb-2">
+                                    <div class="col-md-6 mb-2">
                                         <label asp-for="RemovedDate" class="form-label"></label>
                                         <div class="col-12 col-lg-6">
                                             <div class="input-group">
@@ -206,32 +206,32 @@
                                             </div>
                                             <span asp-validation-for="RemovedDate" class="text-danger"></span>
                                         </div>
-                                    </div> *@
+                                    </div>
                                 </div>
                             </div>
                             <!------------------------------------- Bank Information ------------------------------------------>
                             <div class="mb-6">
                                 <h5>Bank Information</h5>
                                 <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-group">
-                                        <label asp-for="BankID" class="form-label"></label>
-                                        <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankId"></select>
-                                        @*     <select asp-for="BankID" class="select2 form-control w-100" id="single-default">
-                                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                                        @foreach (var item in ViewBag.BankId)
-                                        {
-                                        <option value="@item.Value">@item.Text</option>
-                                        }
-                                        </optgroup>
-                                        </select> *@
-                                        <span asp-validation-for="BankID" class="text-danger"></span>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="BankID" class="form-label"></label>
+                                            <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankId"></select>
+                                            @*     <select asp-for="BankID" class="select2 form-control w-100" id="single-default">
+                                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                            @foreach (var item in ViewBag.BankId)
+                                            {
+                                            <option value="@item.Value">@item.Text</option>
+                                            }
+                                            </optgroup>
+                                            </select> *@
+                                            <span asp-validation-for="BankID" class="text-danger"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label asp-for="BankAccNo" class="form-label"></label>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="BankAccNo" class="form-label"></label>
                                         <input asp-for="BankAccNo" class="form-control" type="number" step="any" />
-                                    <span asp-validation-for="BankAccNo" class="text-danger"></span>
+                                        <span asp-validation-for="BankAccNo" class="text-danger"></span>
 
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="PermanentDoc2MMC" class="form-label"></label>
-                                        <input asp-for="PermanentDoc2MMC" class="form-control"  />
+                                        <input asp-for="PermanentDoc2MMC" class="form-control" />
                                         <span asp-validation-for="PermanentDoc2MMC" class="text-danger"></span>
 
                                     </div>
@@ -335,19 +335,19 @@
                             <!------------------------------------- Location Information ------------------------------------------>
                             <div class="mb-6">
                                 <h5>Location Information</h5>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-2">
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
                                         <label asp-for="Latitude" class="form-label"></label>
-                                        <input asp-for="Latitude" class="form-control" value="0" type="number"/>
+                                        <input asp-for="Latitude" class="form-control" value="0" type="number" />
                                         <span asp-validation-for="Latitude" class="text-danger"></span>
-                                  
-                                </div>
-                                <div class="col-md-6 mb-2">
+
+                                    </div>
+                                    <div class="col-md-6 mb-2">
                                         <label asp-for="Longitude" class="form-label"></label>
                                         <input asp-for="Longitude" class="form-control" value="0" type="number" step="any" />
                                         <span asp-validation-for="Longitude" class="text-danger"></span>
-                                  
-                                </div>
+
+                                    </div>
                                 </div>
                             </div>
                             <!------------------------------------- Services Information ------------------------------------------>
@@ -542,6 +542,16 @@
                                             <input type="checkbox" class="custom-control-input" id="IsUltraSound" asp-for="IsUltraSound" />
                                             <label class="custom-control-label" for="IsUltraSound">Ultra Sound</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="LastModifiedBy" class="form-label"></label>
+                                        <label asp-for="LastModifiedBy" class="form-label">@Model.LastModifiedBy</label>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="LastModifiedDate" class="form-label"></label>
+                                        <label asp-for="LastModifiedDate" class="form-label">@Model.LastModifiedDate</label>
                                     </div>
                                 </div>
                             </div>
