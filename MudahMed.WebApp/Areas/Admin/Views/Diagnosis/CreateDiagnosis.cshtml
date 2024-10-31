@@ -1,0 +1,94 @@
+﻿@model MudahMed.Data.ViewModel.Clinic.DiagnosisViewModel
+
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb items will be appended here -->
+    </ol>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Create Diagnosis
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <form asp-action="CreateDiagnosis" method="post" id="form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="mb-6">
+                                <!------------------------------------- Diagnosis Information ------------------------------------------->
+                                <h5>Diagnosis Information</h5>
+                                <div class="form-row">
+
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Diag_id" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="Diag_id" class="form-control" />
+                                        <span asp-validation-for="Diag_id" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Diag_cat" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="Diag_cat" class="form-control" />
+                                        <span asp-validation-for="Diag_cat" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-2">
+                                        <label asp-for="Diag_desc" class="form-label"></label>
+                                        <textarea asp-for="Diag_desc" class="form-control"></textarea>
+                                        <span asp-validation-for="Diag_desc" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-3 mb-2">
+                                        <label asp-for="IsRemarksReq" class="form-label"></label>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="IsRemarksReq" asp-for="IsRemarksReq" />
+                                            <label class="custom-control-label" for="IsRemarksReq">Checked</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label asp-for="IsLTM" class="form-label"></label>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="IsLTM" asp-for="IsLTM" />
+                                            <label class="custom-control-label" for="IsLTM">Checked</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label asp-for="IsGP" class="form-label"></label>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="IsGP" asp-for="IsGP" />
+                                            <label class="custom-control-label" for="IsGP">Checked</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="col-md-12">
+                                <div class="frame-wrap">
+                                    <div class="demo">
+                                        <button class="btn btn-primary ml-auto" type="submit" value="Save">Save</button>
+                                            <a class="btn btn-primary ml-auto" style="background-color: gray;" href="/admin/diagnosis/list-diagnosis">
+                                            Back to List
+                                        </a>
+                                    </div>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

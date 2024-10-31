@@ -106,7 +106,7 @@ namespace MudahMed.Data.Repositories
             var clinic = await _context.Clinics.FindAsync(id);
             String lastModidy = string.Empty;
 
-            if (clinic == null) return null;
+            if (clinic == null) return new ClinicViewModel();
 
             if (!String.IsNullOrEmpty(clinic.LastModifiedBy))
             {
