@@ -27,6 +27,13 @@
                                 <h5>Drug Information</h5>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
+                                        <label asp-for="DrugID" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="DrugID" class="form-control" />
+                                        <span asp-validation-for="DrugID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
                                         <label asp-for="DrugType_CodeFK" class="form-label"></label><span class="text-danger">*</span>
                                         <input asp-for="DrugType_CodeFK" class="form-control" />
                                         <span asp-validation-for="DrugType_CodeFK" class="text-danger"></span>
@@ -69,7 +76,7 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="DrugUnit_CodeFK" class="form-label"></label>
-                                        <input asp-for="DrugUnit_CodeFK" class="form-control" type="date" />
+                                        <input asp-for="DrugUnit_CodeFK" class="form-control"  />
                                         <span asp-validation-for="DrugUnit_CodeFK" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -81,7 +88,7 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="DrugChrgField_CodeFK" class="form-label"></label>
-                                        <input asp-for="DrugChrgField_CodeFK" class="form-control" type="date" />
+                                        <input asp-for="DrugChrgField_CodeFK" class="form-control" />
                                         <span asp-validation-for="DrugChrgField_CodeFK" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -105,14 +112,14 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="MaxPrice" class="form-label"></label>
-                                        <input asp-for="MaxPrice" class="form-control" type="date" />
+                                        <input asp-for="MaxPrice" class="form-control"  />
                                         <span asp-validation-for="MaxPrice" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="CeilingPrice" class="form-label"></label>
-                                        <input asp-for="CeilingPrice" class="form-control" type="date" />
+                                        <input asp-for="CeilingPrice" class="form-control"  />
                                         <span asp-validation-for="CeilingPrice" class="text-danger"></span>
                                     </div>
                                 </div>

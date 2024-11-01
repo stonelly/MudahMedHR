@@ -11222,23 +11222,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chongkah\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
+      "projectUniqueName": "D:\\Project\\MudahMed\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
       "projectName": "MudahMed.WebApp",
-      "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
-      "packagesPath": "C:\\Users\\chongkah\\.nuget\\packages\\",
-      "outputPath": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\obj\\",
+      "projectPath": "D:\\Project\\MudahMed\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Project\\MudahMed\\MudahMed.WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\chongkah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11254,14 +11254,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Git\\MudahMedHR\\MudahMed.Common\\MudahMed.Common.csproj": {
-              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Common\\MudahMed.Common.csproj"
+            "D:\\Project\\MudahMed\\MudahMed.Common\\MudahMed.Common.csproj": {
+              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Common\\MudahMed.Common.csproj"
             },
-            "D:\\Git\\MudahMedHR\\MudahMed.Data\\MudahMed.Data.csproj": {
-              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Data\\MudahMed.Data.csproj"
+            "D:\\Project\\MudahMed\\MudahMed.Data\\MudahMed.Data.csproj": {
+              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Data\\MudahMed.Data.csproj"
             },
-            "D:\\Git\\MudahMedHR\\MudahMed.Services\\MudahMed.Services.csproj": {
-              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Services\\MudahMed.Services.csproj"
+            "D:\\Project\\MudahMed\\MudahMed.Services\\MudahMed.Services.csproj": {
+              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Services\\MudahMed.Services.csproj"
             }
           }
         }
@@ -11353,24 +11353,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11379,7 +11361,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
