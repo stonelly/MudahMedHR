@@ -51,7 +51,7 @@ namespace MudahMed.Data.ViewModel.Clinic
         public string? ICDCode { get; set; }
 
         [Display(Name = "Is Active")]
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         [Display(Name = "Created Date")]
         public DateTime? CreatedDate { get; set; }
@@ -75,24 +75,24 @@ namespace MudahMed.Data.ViewModel.Clinic
         public decimal? UnitPrice { get; set; }
 
         [Display(Name = "Is Chronic")]
-        public bool? IsChronic { get; set; }
+        public bool IsChronic { get; set; }
 
         [Display(Name = "Maximum Quantity")]
         [Range(0, int.MaxValue, ErrorMessage = "Max quantity must be a non-negative value.")]
-        public int? MaxQty { get; set; }
+        public int MaxQty { get; set; }
 
         [Display(Name = "Maximum Price")]
         [Range(0, double.MaxValue, ErrorMessage = "Max price must be a positive value.")]
-        public decimal? MaxPrice { get; set; }
+        public decimal MaxPrice { get; set; }
 
         [Display(Name = "Poison Code")]
         public string? DrugPoisonFFS_CodeFK { get; set; }
 
         [Display(Name = "Ceiling Price")]
         [Range(0, double.MaxValue, ErrorMessage = "Ceiling price must be a positive value.")]
-        public decimal? CeilingPrice { get; set; }
+        public decimal CeilingPrice { get; set; }
 
         [Display(Name = "Is Exclusion")]
-        public bool? IsExclusion { get; set; }
+        public bool IsExclusion { get; set; }
     }
 }

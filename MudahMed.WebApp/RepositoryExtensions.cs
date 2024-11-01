@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.DataProtection.Repositories;
 using MudahMed.Data.Repositories;
 using MudahMed.Data.Repositories.Abstract;
+using MudahMed.Services;
+using MudahMed.Services.Abstract;
 using NuGet.Protocol.Core.Types;
 
 namespace MudahMed.WebApp
@@ -14,6 +16,7 @@ namespace MudahMed.WebApp
             services.AddScoped<IClinicUserRepository, ClinicUserRepository>();
             services.AddScoped<ICorpUserRepository, CorpUserRepository>();
             services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
+            services.AddScoped<IDrugRepository, DrugRepository>();
             // Register other repositories here
         }
     }
