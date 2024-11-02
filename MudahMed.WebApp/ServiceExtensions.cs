@@ -12,6 +12,7 @@ namespace MudahMed.WebApp
             services.AddScoped<IClinicService, ClinicService>();
             services.AddScoped<IDiagnosisService, DiagnosisService>();
             services.AddScoped<IDrugService, DrugService>();
+            services.AddScoped<ICodeMasterService, CodeMasterService>();
             // Register other services here
         }
     }

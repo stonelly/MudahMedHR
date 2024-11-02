@@ -17,6 +17,7 @@ namespace MudahMed.WebApp
             services.AddScoped<ICorpUserRepository, CorpUserRepository>();
             services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
             services.AddScoped<IDrugRepository, DrugRepository>();
+            services.AddScoped<ICodeMasterRepository, CodeMasterRepository>();
             // Register other repositories here
         }
     }

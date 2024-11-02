@@ -108,7 +108,7 @@ namespace MudahMed.Data.Repositories
                 ICDCode = model.ICDCode,
                 DrugChrgField_CodeFK = model.DrugChrgField_CodeFK,
                 IsActive = true, // Default active status
-                CreatedDate = DateTime.UtcNow,
+                CreatedDate = DateTime.Now,
                 CreatedBy = _userManager.GetUserId(_httpContextAccessor.HttpContext.User),
                 DrugPoisonFFS_CodeFK = model.DrugPoisonFFS_CodeFK,
                 UnitPrice = model.UnitPrice,
@@ -140,7 +140,7 @@ namespace MudahMed.Data.Repositories
             drug.ICDCode = model.ICDCode;
             drug.DrugChrgField_CodeFK = model.DrugChrgField_CodeFK;
             drug.IsActive = model.IsActive;
-            drug.ModifyDate = DateTime.UtcNow;
+            drug.ModifyDate = DateTime.Now;
             drug.ModifyBy = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
             drug.DrugPoisonFFS_CodeFK = model.DrugPoisonFFS_CodeFK;
             drug.UnitPrice = model.UnitPrice;

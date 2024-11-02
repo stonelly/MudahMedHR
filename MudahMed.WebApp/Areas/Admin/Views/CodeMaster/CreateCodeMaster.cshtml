@@ -1,0 +1,86 @@
+﻿@model MudahMed.Data.ViewModel.General.CodeMasterViewModel
+
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb items will be appended here -->
+    </ol>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Create Master Code
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <form asp-action="CreateCodeMaster" method="post" id="form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="mb-6">
+                                <!------------------------------------- Master Code Information ------------------------------------------>
+
+                                <h5>Code Master Information</h5>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="CodeType" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="CodeType" class="form-control" />
+                                        <span asp-validation-for="CodeType" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="CodeValue" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="CodeValue" class="form-control" />
+                                        <span asp-validation-for="CodeValue" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="CodeDescription" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="CodeDescription" class="form-control" />
+                                        <span asp-validation-for="CodeDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Sequence" class="form-label"></label>
+                                        <input asp-for="Sequence" class="form-control" />
+                                        <span asp-validation-for="Sequence" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-3 mb-2">
+                                        <label asp-for="IsActive" class="form-label"></label>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="IsActive" asp-for="IsActive" />
+                                            <label class="custom-control-label" for="IsActive">Is Active</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <div class="frame-wrap">
+                                    <div class="demo">
+                                        <button class="btn btn-primary ml-auto" type="submit" value="Save">Save</button>
+                                        <a class="btn btn-primary ml-auto" style="background-color: gray;" href="/admin/CodeMaster/list-CodeMasters">
+                                            Back to List
+                                        </a>
+                                    </div>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

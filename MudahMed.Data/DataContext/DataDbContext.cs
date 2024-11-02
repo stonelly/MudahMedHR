@@ -45,6 +45,7 @@ namespace MudahMed.Data.DataContext
             modelBuilder.ApplyConfiguration(new DrugConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new IndustryFieldConfiguration());
+            modelBuilder.ApplyConfiguration(new CodeMasterConfiguration());
 
             // Identity configurations
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
@@ -86,5 +87,6 @@ namespace MudahMed.Data.DataContext
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<IndustryField> IndustryFields { get; set; }
+        public DbSet<CodeMaster> CodeMasters { get; set; }
     }
 }
