@@ -22,7 +22,7 @@ namespace MudahMed.Services
         {
             return await _CodeMasterRepository.GetCodeMasters();
         }
-        public async Task<IQueryable<CodeMasterViewModel>> GetAllCodeMastersbyCodeType(string codeType)
+        public async Task<IQueryable<CodeMasterViewModel>> GetAllCodeMastersByCodeType(string codeType)
         {
             return await _CodeMasterRepository.GetCodeMastersByType(codeType);
         }
@@ -42,14 +42,5 @@ namespace MudahMed.Services
             await _CodeMasterRepository.UpdateCodeMasterAsync(model);
         }
 
-        public Task<IQueryable<CodeMasterViewModel>> GetAllCodeMastersByCodeType(string codeType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CodeMasterViewModel> GetCodeMasterByIdAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

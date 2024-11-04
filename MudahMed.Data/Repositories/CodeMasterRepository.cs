@@ -43,7 +43,7 @@ namespace MudahMed.Data.Repositories
                     LastModifiedDate = mc.LastModifiedDate
                 }));
         }
-        public Task<IQueryable<CodeMasterViewModel>> GetCodeMastersByType(string codeType)
+        public  Task<IQueryable<CodeMasterViewModel>> GetCodeMastersByType(string codeType)
         {
             return Task.FromResult(_context.CodeMasters
                 .Select(mc => new CodeMasterViewModel

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
 using MudahMed.Common.ConfigSetting;
+using MudahMed.Common.Constants;
 using MudahMed.Data.DataContext;
 using MudahMed.Data.ViewModel.General;
 using MudahMed.Services.Abstract;
@@ -49,6 +51,8 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult CreateCodeMaster()
         {
+            var codeMasters = _codeMasterService.GetAllCodeMastersByCodeType(General.CodeMasterType).Result.ToList();
+            ViewData["CodeMasterId"] = new SelectList(codeMasters, "CodeValue", "CodeDescription");
             return View();
         }
 
