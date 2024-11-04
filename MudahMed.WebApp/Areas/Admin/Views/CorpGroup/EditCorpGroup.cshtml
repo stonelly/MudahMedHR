@@ -9,7 +9,7 @@
             <div id="panel-1" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        Create Corp Group
+                        Edit Corp Group
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <form asp-action="CreateCorpGroup" method="post" id="form">
+                        <form asp-action="EditCorpGroup" method="post" enctype="multipart/form-data" id="form">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="mb-6">
                                 <!------------------------------------- Corp Group Information ------------------------------------------>
@@ -27,96 +27,102 @@
                                 <h5>Corp Group Information</h5>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
+                                        <label asp-for="CorpGroupID" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="CorpGroupID" class="form-control" readonly />
+                                        <span asp-validation-for="CorpGroupID" class="text-danger"></span>
+                                        <input type="hidden" name="CorpGroupID" id="CorpGroupID" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
                                         <label asp-for="Name" class="form-label"></label><span class="text-danger">*</span>
                                         <input asp-for="Name" class="form-control" />
                                         <span asp-validation-for="Name" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="Addr1" class="form-label"></label>
                                         <input asp-for="Addr1" class="form-control" />
                                         <span asp-validation-for="Addr1" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="Addr2" class="form-label"></label>
                                         <input asp-for="Addr2" class="form-control" />
                                         <span asp-validation-for="Addr2" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="Addr3" class="form-label"></label>
                                         <input asp-for="Addr3" class="form-control" />
                                         <span asp-validation-for="Addr3" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="postcode" class="form-label"></label>
                                         <input asp-for="postcode" class="form-control" />
                                         <span asp-validation-for="postcode" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="city" class="form-label"></label>
                                         <input asp-for="city" class="form-control" />
                                         <span asp-validation-for="city" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="state" class="form-label"></label>
                                         <input asp-for="state" class="form-control" />
                                         <span asp-validation-for="state" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="country" class="form-label"></label>
                                         <input asp-for="country" class="form-control" />
                                         <span asp-validation-for="country" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="ContactPerson" class="form-label"></label>
                                         <input asp-for="ContactPerson" class="form-control" />
                                         <span asp-validation-for="ContactPerson" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="ContactNo" class="form-label"></label>
                                         <input asp-for="ContactNo" class="form-control" />
                                         <span asp-validation-for="ContactNo" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="Fax" class="form-label"></label>
                                         <input asp-for="Fax" class="form-control" />
                                         <span asp-validation-for="Fax" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="RegNo" class="form-label"></label>
                                         <input asp-for="RegNo" class="form-control" />
                                         <span asp-validation-for="RegNo" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="TIN" class="form-label"></label>
                                         <input asp-for="TIN" class="form-control" />
                                         <span asp-validation-for="TIN" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="BankID" class="form-label"></label><span class="text-danger">*</span>
                                         <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankId"></select>
                                         <span asp-validation-for="BankID" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="BankAccNo" class="form-label"></label>
                                         <input asp-for="BankAccNo" class="form-control" />
                                         <span asp-validation-for="BankAccNo" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="col-md-6 mb-2">
                                         <label asp-for="Email" class="form-label"></label>
                                         <input asp-for="Email" class="form-control" />
@@ -125,7 +131,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-6">
+                            <div class="col-md-12">
                                 <div class="frame-wrap">
                                     <div class="demo">
                                         <button class="btn btn-primary ml-auto" type="submit" value="Save">Save</button>

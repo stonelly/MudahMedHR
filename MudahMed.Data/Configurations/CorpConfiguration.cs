@@ -82,6 +82,9 @@ namespace MudahMed.Data.Configurations
             builder.Property(x => x.IndustryField)
                    .IsRequired(false);
 
+            builder.Property(x => x.IsActive)
+                   .HasDefaultValue(true); // Assuming active by default
+
             builder.Property(x => x.createdDate)
                    .IsRequired(false);
 

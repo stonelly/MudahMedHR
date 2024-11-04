@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MudahMed.Data.Entities
+namespace MudahMed.Data.ViewModel.CorpGroup
 {
-    public class CorpGroup
+    public class CorpGroupViewModel
     {
-        [Key]
         public int CorpGroupID { get; set; } // Primary Key
 
         [Display(Name = "Group Name")]
@@ -66,7 +65,7 @@ namespace MudahMed.Data.Entities
         public string? Email { get; set; }
 
         [Display(Name = "Is Active")]
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public DateTime? createdDate { get; set; }
 
@@ -74,11 +73,5 @@ namespace MudahMed.Data.Entities
         public string? LastModifiedBy { get; set; }
 
         public DateTime? LastModifiedDate { get; set; }
-        public Bank Bank { get; set; } // Navigation property
-
-
-        // Navigation property for related Corporations
-        public virtual ICollection<Corp> Corporations { get; set; }
     }
-
 }

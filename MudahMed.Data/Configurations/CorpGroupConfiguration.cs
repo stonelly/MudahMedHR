@@ -72,6 +72,9 @@ namespace MudahMed.Data.Configurations
             builder.Property(x => x.Email)
                    .HasMaxLength(500);
 
+            builder.Property(x => x.IsActive)
+                   .HasDefaultValue(true); // Assuming active by default
+
             builder.Property(x => x.createdDate)
                    .IsRequired(false);
 
