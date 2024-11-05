@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MudahMed.Data.Repositories.Abstract
+namespace MudahMed.Services.Abstract
 {
-    public interface ICorpRepository
+    public interface ICorpService
     {
-        Task<IQueryable<CorpViewModel>> GetCorps();
-        Task<CorpViewModel> GetCorpById(int id);
+        Task<IQueryable<CorpViewModel>> GetAllCorps();
+        Task<CorpViewModel> GetCorpByIdAsync(int id);
         Task CreateCorpAsync(CorpViewModel model);
         Task UpdateCorpAsync(CorpViewModel model);
     }

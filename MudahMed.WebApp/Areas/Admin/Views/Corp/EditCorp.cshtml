@@ -1,0 +1,190 @@
+﻿@model MudahMed.Data.ViewModel.Corporate.CorpViewModel
+
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb items will be appended here -->
+    </ol>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Edit Corp
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <form asp-action="EditCorp" method="post" enctype="multipart/form-data" id="form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="mb-6">
+                                <!------------------------------------- Corp Information ------------------------------------------>
+
+                                <h5>Corp Information</h5>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="CorpGroupID" class="form-label"></label><span class="text-danger">*</span>
+                                        <select asp-for="CorpGroupID" class="form-control" asp-items="ViewBag.CorpGroupID"></select>
+                                        <span asp-validation-for="CorpGroupID" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="CorpID" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="CorpID" class="form-control" readonly />
+                                        <span asp-validation-for="CorpID" class="text-danger"></span>
+                                        <input type="hidden" name="CorpID" id="CorpID" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_name" class="form-label"></label><span class="text-danger">*</span>
+                                        <input asp-for="Corp_name" class="form-control" />
+                                        <span asp-validation-for="Corp_name" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_addr1" class="form-label"></label>
+                                        <input asp-for="Corp_addr1" class="form-control" />
+                                        <span asp-validation-for="Corp_addr1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_addr2" class="form-label"></label>
+                                        <input asp-for="Corp_addr2" class="form-control" />
+                                        <span asp-validation-for="Corp_addr2" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_addr3" class="form-label"></label>
+                                        <input asp-for="Corp_addr3" class="form-control" />
+                                        <span asp-validation-for="Corp_addr3" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="postcode" class="form-label"></label>
+                                        <input asp-for="postcode" class="form-control" />
+                                        <span asp-validation-for="postcode" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="city" class="form-label"></label>
+                                        <input asp-for="city" class="form-control" />
+                                        <span asp-validation-for="city" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="state" class="form-label"></label>
+                                        <input asp-for="state" class="form-control" />
+                                        <span asp-validation-for="state" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="country" class="form-label"></label>
+                                        <input asp-for="country" class="form-control" />
+                                        <span asp-validation-for="country" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="ContactPerson" class="form-label"></label>
+                                        <input asp-for="ContactPerson" class="form-control" />
+                                        <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_ContactNo" class="form-label"></label>
+                                        <input asp-for="Corp_ContactNo" class="form-control" />
+                                        <span asp-validation-for="Corp_ContactNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_fax" class="form-label"></label>
+                                        <input asp-for="Corp_fax" class="form-control" />
+                                        <span asp-validation-for="Corp_fax" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_RegNo" class="form-label"></label>
+                                        <input asp-for="Corp_RegNo" class="form-control" />
+                                        <span asp-validation-for="Corp_RegNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Corp_TIN" class="form-label"></label>
+                                        <input asp-for="Corp_TIN" class="form-control" />
+                                        <span asp-validation-for="Corp_TIN" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="BankID" class="form-label"></label><span class="text-danger">*</span>
+                                        <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankId"></select>
+                                        <span asp-validation-for="BankID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="BankAccNo" class="form-label"></label>
+                                        <input asp-for="BankAccNo" class="form-control" />
+                                        <span asp-validation-for="BankAccNo" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="Email" class="form-label"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="FinanceEmail" class="form-label"></label>
+                                        <input asp-for="FinanceEmail" class="form-control" />
+                                        <span asp-validation-for="FinanceEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="IsSuspend" class="form-label"></label>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="IsSuspend" asp-for="IsSuspend" />
+                                            <label class="custom-control-label" for="IsSuspend">Is Suspended</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="IndustryField" class="form-label"></label>
+                                        <select asp-for="IndustryField" class="form-control" asp-items="ViewBag.ItemID"></select>
+                                        <span asp-validation-for="IndustryField" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label asp-for="IsActive" class="form-label"></label>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="IsActive" asp-for="IsActive" />
+                                            <label class="custom-control-label" for="IsActive">Is Active</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="frame-wrap">
+                                    <div class="demo">
+                                        <button class="btn btn-primary ml-auto" type="submit" value="Save">Save</button>
+                                        <a class="btn btn-primary ml-auto" style="background-color: gray;" href="/admin/corp/list-corps">
+                                            Back to List
+                                        </a>
+                                    </div>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

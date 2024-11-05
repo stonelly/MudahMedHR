@@ -1,12 +1,13 @@
 ﻿using MudahMed.Data.Repositories.Abstract;
 using MudahMed.Data.ViewModel.CorpGroup;
+using MudahMed.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MudahMed.Services.Abstract
+namespace MudahMed.Services
 {
     public class CorpGroupService : ICorpGroupService
     {
