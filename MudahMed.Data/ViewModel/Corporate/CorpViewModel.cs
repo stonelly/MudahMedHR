@@ -12,8 +12,6 @@ namespace MudahMed.Data.ViewModel.Corporate
 {
     public class CorpViewModel
     {
-
-        [Key]
         public int CorpID { get; set; } // Primary Key
 
         [Display(Name = "Corporate Name")]
@@ -90,16 +88,14 @@ namespace MudahMed.Data.ViewModel.Corporate
         [EmailAddress(ErrorMessage = "The finance email address is not valid.")]
         public string? FinanceEmail { get; set; } // The finance email address of the corporation
 
-        [Required(ErrorMessage = "The suspension status is required.")]
         [Display(Name = "Is Suspended")]
         public bool IsSuspend { get; set; } // Indicates whether the corporation is suspended or not
 
         [Display(Name = "Industry Field")]
         public int? IndustryField { get; set; } // The industry field that the corporation operates in
 
-        [Required(ErrorMessage = "The active status is required.")]
         [Display(Name = "Is Active")]
-        public bool? IsActive { get; set; } // Indicates whether the corporation is active or not
+        public bool IsActive { get; set; } // Indicates whether the corporation is active or not
 
         [Display(Name = "Created Date")]
         public DateTime? createdDate { get; set; } // The date that the corporation was created
@@ -112,7 +108,7 @@ namespace MudahMed.Data.ViewModel.Corporate
         public DateTime? LastModifiedDate { get; set; } // The date that the corporation was last modified
 
         [Display(Name = "Bank")]
-        public BankViewModel Bank { get; set; } // Navigation property to the bank associated with the corporation
+        public virtual BankViewModel Bank { get; set; } // Navigation property to the bank associated with the corporation
 
         [Display(Name = "Corporate Group")]
         public virtual CorpGroupViewModel CorpGroup { get; set; } // Navigation property to the corporate group that the corporation belongs to

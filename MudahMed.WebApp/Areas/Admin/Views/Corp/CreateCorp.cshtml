@@ -135,25 +135,9 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-2">
-                                        <label asp-for="IsSuspend" class="form-label"></label>
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="IsSuspend" asp-for="IsSuspend" />
-                                            <label class="custom-control-label" for="IsSuspend">Is Suspended</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-2">
                                         <label asp-for="IndustryField" class="form-label"></label>
                                         <select asp-for="IndustryField" class="form-control" asp-items="ViewBag.ItemID"></select>
                                         <span asp-validation-for="IndustryField" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-2">
-                                        <label asp-for="IsActive" class="form-label"></label>
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="IsActive" asp-for="IsActive" />
-                                            <label class="custom-control-label" for="IsActive">Is Active</label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

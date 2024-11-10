@@ -66,6 +66,8 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCorp(CorpViewModel model)
         {
+            ModelState.Remove("Bank");
+            ModelState.Remove("CorpGroup");
             if (ModelState.IsValid)
             {
                 await _corpService.CreateCorpAsync(model);
@@ -96,6 +98,8 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> EditCorp(CorpViewModel model)
         {
+            ModelState.Remove("Bank");
+            ModelState.Remove("CorpGroup");
             if (ModelState.IsValid)
             {
                 await _corpService.UpdateCorpAsync(model);
