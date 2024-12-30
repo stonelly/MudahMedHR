@@ -1,0 +1,174 @@
+﻿@model Employee
+
+<h2>Create Employee</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Emp_ic" class="control-label"></label>
+        <input asp-for="Emp_ic" class="form-control" />
+        <span asp-validation-for="Emp_ic" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Emp_name" class="control-label"></label>
+        <input asp-for="Emp_name" class="form-control" />
+        <span asp-validation-for="Emp_name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CorpID" class="control-label"></label>
+        <input asp-for="CorpID" class="form-control" />
+        <span asp-validation-for="CorpID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Suboffice_fk" class="control-label"></label>
+        <input asp-for="Suboffice_fk" class="form-control" />
+        <span asp-validation-for="Suboffice_fk" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Dept_fk" class="control-label"></label>
+        <input asp-for="Dept_fk" class="form-control" />
+        <span asp-validation-for="Dept_fk" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BenefitID" class="control-label"></label>
+        <input asp-for="BenefitID" class="form-control" />
+        <span asp-validation-for="BenefitID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Emp_gender" class="control-label"></label>
+        <input asp-for="Emp_gender" class="form-control" />
+        <span asp-validation-for="Emp_gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Emp_dob" class="control-label"></label>
+        <input asp-for="Emp_dob" class="form-control" type="date" />
+        <span asp-validation-for="Emp_dob" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Emp_race" class="control-label"></label>
+        <input asp-for="Emp_race" class="form-control" />
+        <span asp-validation-for="Emp_race" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Emp_nationality" class="control-label"></label>
+        <input asp-for="Emp_nationality" class="form-control" />
+        <span asp-validation-for="Emp_nationality" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Addr1" class="control-label"></label>
+        <input asp-for="Addr1" class="form-control" />
+        <span asp-validation-for="Addr1" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Addr2" class="control-label"></label>
+        <input asp-for="Addr2" class="form-control" />
+        <span asp-validation-for="Addr2" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Addr3" class="control-label"></label>
+        <input asp-for="Addr3" class="form-control" />
+        <span asp-validation-for="Addr3" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Postcode" class="control-label"></label>
+        <input asp-for="Postcode" class="form-control" />
+        <span asp-validation-for="Postcode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="State" class="control-label"></label>
+        <input asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Country" class="control-label"></label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cont_no" class="control-label"></label>
+        <input asp-for="Cont_no" class="form-control" />
+        <span asp-validation-for="Cont_no" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Designation" class="control-label"></label>
+        <input asp-for="Designation" class="form-control" />
+        <span asp-validation-for="Designation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Remarks" class="control-label"></label>
+        <input asp-for="Remarks" class="form-control" />
+        <span asp-validation-for="Remarks" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Join_dt" class="control-label"></label>
+        <input asp-for="Join_dt" class="form-control" type="date" />
+        <span asp-validation-for="Join_dt" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ent_dt" class="control-label"></label>
+        <input asp-for="Ent_dt" class="form-control" type="date" />
+        <span asp-validation-for="Ent_dt" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BankID" class="control-label"></label>
+        <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankID"></select>
+        <span asp-validation-for="BankID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BankAccNo" class="control-label"></label>
+        <input asp-for="BankAccNo" class="form-control" />
+        <span asp-validation-for="BankAccNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Resign_dt" class="control-label"></label>
+        <input asp-for="Resign_dt" class="form-control" type="date" />
+        <span asp-validation-for="Resign_dt" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ClientNumber" class="control-label"></label>
+        <input asp-for="ClientNumber" class="form-control" />
+        <span asp-validation-for="ClientNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CostCentre" class="control-label"></label>
+        <input asp-for="CostCentre" class="form-control" />
+        <span asp-validation-for="CostCentre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsActive" class="control-label"></label>
+        <input asp-for="IsActive" class="form-control" type="checkbox" />
+        <span asp-validation-for="IsActive" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CreatedDate" class="control-label"></label>
+        <input asp-for="CreatedDate" class="form-control" type="date" />
+        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastModifiedBy" class="control-label"></label>
+        <input asp-for="LastModifiedBy" class="form-control" />
+        <span asp-validation-for="LastModifiedBy" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastModifiedDate" class="control-label"></label>
+        <input asp-for="LastModifiedDate" class="form-control" type="date" />
+        <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

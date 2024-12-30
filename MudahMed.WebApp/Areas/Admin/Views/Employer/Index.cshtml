@@ -1,275 +1,218 @@
-﻿@model IEnumerable<MudahMed.Data.ViewModel.User.ListEmployersViewWModel>
-@using X.PagedList;
-@using X.PagedList.Mvc.Core;
-@using X.PagedList.Web.Common;
-@using MudahMed.Data.ViewModel.User;
+﻿@model IEnumerable<Employee>
 
-<div class="content-wrapper">
-    <div class="row">
-        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <br />
-                    <ul class="nav nav-tabs" style="justify-content: center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/apply-employer/3">All employers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/apply-employer/1">Waiting</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/apply-employer/2">Confirmed</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/apply-employer/0">Denied</a>
-                        </li>
-                    </ul>
-                    <br />
-                    <div class="table-responsive">
-                        <table  class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Employer
-                                    </th>
-                                    <th>
-                                        Province
-                                    </th>
-                                    <th>
-                                        Apply date
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-                                        Actions
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var emp in Model)
-                                {
-                                    <tr class="header">
-                                        <td>
-                                            <b>@emp.FullName</b>
-                                        </td>
-                                        <td>
-                                            @emp.ProvinceName
-                                        </td>
-                                        <td>
-                                            @emp.RegisterDate
-                                        </td>
-                                        <td>
-                                            @{
-                                                switch (emp.Status)
-                                                {
-                                                    case 0:
-                                                        <span class="text-danger"><b>Denied</b></span>
-                                                        break;
-                                                    case 1:
-                                                        <span class="text-info"><b>Waiting</b></span>
-                                                        break;
-                                                    case 2:
-                                                        <span class="text-success"><b>Confirmed</b></span>
-                                                        break;
-                                                    default:
-                                                        <span class="text-success"></span>
-                                                        break;
-                                                }
-                                            }
-                                        </td>
-                                        <td>
-                                            @if (emp.Status == 1)
-                                            {
-                                                <button type="button" onclick="onConfirm('@emp.Id')" class="btn btn-primary">Confirm</button>
-                                                <button type="button" onclick="onDeny('@emp.Id')" class="btn btn-danger">Deny</button>
-                                            }
-                                            @if (emp.Status == 2)
-                                            {
-                                                <button type="button" onclick="onDeny('@emp.Id')" class="btn btn-danger">Deny</button>
-                                            }
-                                            @if (emp.Status == 0)
-                                            {
-                                                <button type="button" onclick="onConfirm('@emp.Id')" class="btn btn-success">Confirm</button>
-                                            }
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th>Description</th>
-                                        <th>Contact</th>
-                                        <th>Location</th>
-                                        <th>WebsiteURL</th>
-                                    </tr>
-                                    <tr class="targetfields">
-                                        <td>
-                                            <img src="https://localhost:7211/images/employers/@emp.UrlAvatar" alt="@emp.FullName" style="width: 100px;">
-                                        </td>
-                                        <td>@Html.Raw(emp.Description)</td>
-                                        <td>@Html.Raw(emp.Contact)</td>
-                                        <td>@Html.Raw(emp.Location)</td>
-                                        <td>@emp.WebsiteURL</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--Page list-->
-                    <div class="text-center">
-                        <ul class="pagination">
-                            @Html.PagedListPager((IPagedList)Model, page =>
-                            Url.Action("Index", new { page }),
-                            new PagedListRenderOptions
-                            {
-                            Display = PagedListDisplayMode.IfNeeded,
-                            LiElementClasses = new string[] { "page-item" },
-                            UlElementClasses = new string[] { "pagination" },
-                            PageClasses = new string[] { "page-link" },
-                            MaximumPageNumbersToDisplay = 7, // Maximum number of pages displayed
-                            LinkToPreviousPageFormat = "<span aria-hidden=\"true\">&lsaquo;</span>",
-                            LinkToNextPageFormat = "<span aria-hidden=\"true\">&rsaquo;</span>",
-                            LinkToFirstPageFormat = "<span aria-hidden=\"true\">&lsaquo;&lsaquo;</span>",
-                            LinkToLastPageFormat = "<span aria-hidden=\"true\">&rsaquo;&rsaquo;</span>"
-                            })
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<h2>Employees</h2>
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            //Fixing jQuery Click Events for the iPad
-            var ua = navigator.userAgent,
-                event = (ua.match(/iPad/i)) ? "touchstart" : "click";
-            $('.table').on(event, '.header', function () {
-                $(this).toggleClass("active", "").nextUntil('.header').css('display', function (i, v) {
-                    return this.style.display === 'table-row' ? 'none' : 'table-row';
-                });
-            });
-            $('.table').on(event, '.header td:not(:last-child)', function (e) {
-                e.stopPropagation();
-            });
-        });
-    </script>
-
-    <script>
-        function onConfirm(id) {
-            Swal.fire({
-                title: 'Confirm this employer?',
-                text: "Are you sure you want to accept this employer?",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Confirm'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/admin/apply-employer/update-employer-status/' + id + '/' + 2;
-                    Swal.fire(
-                        'Accepted!',
-                        '',
-                        'success'
-                    )
-                }
-            })
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_ic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorpID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Suboffice_fk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dept_fk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenefitID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addr1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addr2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addr3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cont_no)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Join_dt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ent_dt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankAccNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resign_dt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostCentre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emp_ic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emp_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorpID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Suboffice_fk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dept_fk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BenefitID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emp_gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emp_dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emp_race)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emp_nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addr1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addr2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addr3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cont_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Join_dt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ent_dt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BankID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BankAccNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Resign_dt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostCentre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifiedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifiedDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Emp_id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Emp_id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Emp_id">Delete</a>
+                </td>
+            </tr>
         }
-
-        function onDeny(id) {
-            Swal.fire({
-                title: 'Deny this employer?',
-                text: "Are you sure you want to deny this user?",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Deny'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/admin/apply-employer/update-employer-status/' + id + '/' + 0;
-                    Swal.fire(
-                        'Denied!',
-                        '',
-                        'success'
-                    )
-                }
-            })
-        }
-    </script>
-}
-
-<style>
-    .table thead tr {
-        display: table-row !important;
-        font-weight: 700 !important;
-    }
-
-    .table tr.header {
-        font-weight: bold;
-        background-color: #fff;
-        cursor: pointer;
-        -webkit-user-select: none;
-        /* Chrome all / Safari all */
-        -moz-user-select: none;
-        /* Firefox all */
-        -ms-user-select: none;
-        /* IE 10+ */
-        user-select: none;
-        /* Likely future */
-    }
-
-    .table tr:not(.header) {
-        display: none;
-    }
-
-    .table .header:after {
-        content: "\002b";
-        position: relative;
-        top: 1px;
-        display: inline-block;
-        font-family: 'Glyphicons Halflings';
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        float: right;
-        color: #999;
-        text-align: center;
-        padding: 3px;
-        transition: transform .25s linear;
-        -webkit-transition: -webkit-transform .25s linear;
-    }
-
-    .table .header.active:after {
-        content: "\2212";
-    }
-
-    .pagination {
-        list-style-type: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-        .pagination li {
-            margin: 0 5px;
-        }
-
-            .pagination li a {
-                display: inline-block;
-                padding: 5px 10px;
-                border: 1px solid #ccc;
-                color: #333;
-                text-decoration: none;
-                border-radius: 5px;
-            }
-
-            .pagination li.active a {
-                background-color: #333;
-                color: #fff;
-            }
-</style>
+    </tbody>
+</table>

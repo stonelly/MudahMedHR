@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Dependent>
+
+<h2>Dependents</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dep_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dep_ic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenefitID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Relationship)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dep_gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dep_dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dep_race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dep_nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Join_dt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ent_dt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepResignDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee.Emp_name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dep_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dep_ic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BenefitID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Relationship)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dep_gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dep_dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dep_race)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dep_nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Join_dt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ent_dt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifiedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifiedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepResignDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Emp_name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Dep_id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Dep_id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Dep_id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
