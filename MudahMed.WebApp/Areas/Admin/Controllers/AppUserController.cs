@@ -1,8 +1,8 @@
 ﻿using MudahMed.Data.Entities;
-using MudahMed.Data.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MudahMed.Data.ViewModel.User;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {

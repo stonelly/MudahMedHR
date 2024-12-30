@@ -47,30 +47,5 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
 
             return View();
         }
-
-        [Route("list-employer")]
-        public async Task<IActionResult> ListEmployer(int? page)
-        {
-            //var users = _context.AppUsers.OrderByDescending(u => u.Id).Where(u => u.Status != -1 && u.Status != 2).ToList();
-            //var users = await _appUserService.GetAllUsers();
-            var users = await _appUserService.GetUsersByRoleAsync(Role.Role_Corporate);
-
-            //var vms = _mapper.Map<IList<ListEmployersViewWModel>>(users);
-
-            return View(users);
-        }
-
-        [Route("list-user")]
-        public async Task<IActionResult> ListUser(int? page)
-        {
-            int pageSize = 5;
-            //var users = _context.AppUsers.OrderByDescending(u => u.Id).Where(u => u.Status != -1 && u.Status != 2).ToList();
-            //var users = await _appUserService.GetAllUsers();
-            var users = await _appUserService.GetUsersByRoleAsync(Role.Role_Clinic);
-            
-            //var vms = _mapper.Map<IList<ListEmployersViewWModel>>(users);
-
-            return View(users.ToPagedList(page ?? 1, pageSize));
-        }
     }
 }

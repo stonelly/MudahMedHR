@@ -15,6 +15,7 @@ namespace MudahMed.WebApp
             services.AddScoped<ICodeMasterService, CodeMasterService>();
             services.AddScoped<ICorpGroupService, CorpGroupService>();
             services.AddScoped<ICorpService, CorpService>();
+            services.AddScoped<IEmailSender, EmailSender>();
             // Register other services here
         }
     }

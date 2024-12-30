@@ -1,4 +1,4 @@
-﻿@model MudahMed.Data.ViewModel.LoginViewModel
+﻿@model MudahMed.Data.ViewModel.User.LoginViewModel
 
 @{
     Layout = "~/Areas/Employer/Views/Shared/_EmployerLoginLayout.cshtml";
@@ -6,7 +6,7 @@
 
 <!-- /Logo -->
 <h4 class="mb-2">Login for HR/ Clinic User</h4>
-<p class="mb-4">Please sign-in to your account and start the adventure</p>
+<p class="mb-4">Please sign-in to your account</p>
 
 <form asp-action="Login" asp-controller="Account" id="account" class="mb-3" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -36,17 +36,21 @@
     <div class="mb-3">
         <button id="login-submit" class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
     </div>
+    <div class="mb-3">
+        <a href="/forgotpassword"
+           class="btn btn-primary d-grid w-100" style="position:center">Forget Password</a>
+    </div>
 </form>
 
-<p class="text-center">
+@* <p class="text-center">
     <span>Want to be an employer?</span>
     <a href="/register-employer/register">
         <span>Sign up now</span>
     </a>
-</p>
-
+</p> *@
+<p class="text-center">
 <a href="/login" class="btn btn-primary d-grid w-100" style="position:center">Sign in for Admin</a>
-
+</p>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

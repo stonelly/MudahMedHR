@@ -5,12 +5,14 @@ using MudahMed.Data.Entities;
 using Microsoft.Extensions.Options;
 using MudahMed.WebApp;
 using MudahMed.Common.ConfigSetting;
+using MudahMed.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 var connectionString = builder.Configuration.GetConnectionString("MudahMedContextConnection")
     ?? throw new InvalidOperationException("Connection string 'MudahMedContextConnection' not found.");

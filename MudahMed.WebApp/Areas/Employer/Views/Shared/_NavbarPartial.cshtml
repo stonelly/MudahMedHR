@@ -4,7 +4,7 @@
 @inject UserManager<AppUser> userManager
 
 @{
-    var employer = await userManager.GetUserAsync(User);
+    var admin = await userManager.GetUserAsync(User);
 }
 
 <!-- Navbar -->
@@ -19,24 +19,35 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
-                <h4 style="margin-top: 15px">@employer.FullName </h4>
+                <h4 style="margin-top: 15px">@admin.FullName   damin</h4>
             </div>
         </div>
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Employer -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-              
-                <ul class="dropdown-menu dropdown-menu-end">                   
+                <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="/logout">
+                        <a class="dropdown-item" href="#">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <span class="fw-semibold d-block">@admin.FullName</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("Logout", "Account")">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Log Out</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <!--/ Employer -->
+            <!--/ Admin -->
         </ul>
     </div>
 </nav>

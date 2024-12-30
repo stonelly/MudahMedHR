@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MudahMed.Data.ViewModel
+namespace MudahMed.Data.ViewModel.User
 {
     public class CreateRoleViewModel
     {

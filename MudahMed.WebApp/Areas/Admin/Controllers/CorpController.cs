@@ -33,12 +33,12 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
 
         [Route("list-corps")]
         [HttpGet]
-        public async Task<IActionResult> ListCorps(string city)
+        public async Task<IActionResult> ListCorps(string corp_name, string city)
         {
             int limit = _maxResultLimit;
             var corps = await _corpService.GetAllCorps();
 
-            if (string.IsNullOrEmpty(city))
+            if (string.IsNullOrEmpty(city) && string.IsNullOrEmpty(corp_name))
                 limit = int.MaxValue;
 
             var corpList = corps.Take(limit).ToList();
@@ -46,6 +46,10 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(city))
             {
                 corpList = corpList.Where(c => c.city.Contains(city, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+            if (!string.IsNullOrEmpty(corp_name))
+            {
+                corpList = corpList.Where(c => c.Corp_name.Contains(corp_name, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
             return View(corpList);

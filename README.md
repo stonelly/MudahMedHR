@@ -15,4 +15,16 @@ Email | Password | Role
 -------- | -------- | --------
 admin@gmail.com | Abc123!@# | Admin
 admin8888@gmail.com | Abcd!234 | Clinic User 
- 
+clinic@gmail.com
+corporate@gmail.com
+admin@gmail.com
+
+
+remote desktop
+IP = 118.107.204.50:19389
+username = administrator
+password = ix5iCLG3lpalWDY6Ya5h
+
+MS SQL
+username = mgr
+password = mgr123

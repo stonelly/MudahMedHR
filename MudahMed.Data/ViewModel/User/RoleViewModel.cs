@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MudahMed.Data.ViewModel
+namespace MudahMed.Data.ViewModel.User
 {
     public class RoleViewModel
     {
@@ -14,6 +14,8 @@ namespace MudahMed.Data.ViewModel
         public string Name { get; set; }
         [Display(Name = "Description")]
         public string Description { get; set; }
+        [Display(Name = "Encrypted Key")]
+        public string EncryptedKey { get; set; }
         public bool IsAssigned { get; set; } // Flag to indicate if the role is assigned
     }
 

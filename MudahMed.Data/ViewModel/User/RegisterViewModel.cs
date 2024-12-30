@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace MudahMed.Data.ViewModel
+namespace MudahMed.Data.ViewModel.User
 {
     public class RegisterViewModel
     {
@@ -22,7 +22,9 @@ namespace MudahMed.Data.ViewModel
         public string ConfirmPassword { get; set; }
         [Display(Name = "Full name")]
         [StringLength(100, ErrorMessage = "Can't exceed 100 characters.")]
-        public string? FullName { get; set; }
+
+        [Required]
+        public string FullName { get; set; }
         [Display(Name = "Age")]
         [Range(0, 100, ErrorMessage = "Please enter valid age.")]
         public int? Age { get; set; }
@@ -32,5 +34,12 @@ namespace MudahMed.Data.ViewModel
         [Display(Name = "Address")]
         [StringLength(256, ErrorMessage = "Your address cannot be more than 200 characters.")]
         public string? Address { get; set; }
+        public string UserRole { get; set; }
+
+        public string RefTable { get; set; }
+        [Required]
+        public int RefId { get; set; }
+
+        public bool TwoFactorEnabled { get; set; }
     }
 }

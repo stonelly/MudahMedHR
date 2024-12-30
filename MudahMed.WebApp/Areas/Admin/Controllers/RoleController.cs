@@ -1,10 +1,11 @@
 ﻿using MudahMed.Data.Entities;
-using MudahMed.Data.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MudahMed.Common.ConfigSetting;
 using Microsoft.Extensions.Options;
+using MudahMed.Common.Encrypt;
+using MudahMed.Data.ViewModel.User;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
@@ -53,6 +54,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                     Id = role.Id.ToString(),
                     Name = role.Name,
                     Description = role.Description,
+                    EncryptedKey = HashingAES256d.EncryptStringToBytes_Aes(role.Name),
                     IsAssigned = userCount.Any() // True if there are users assigned
                 });
             }

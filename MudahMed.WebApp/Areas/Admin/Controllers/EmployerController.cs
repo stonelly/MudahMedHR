@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using MudahMed.Data.ViewModel;
 using X.PagedList;
 using MudahMed.Common.Constants;
+using MudahMed.Data.ViewModel.User;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {

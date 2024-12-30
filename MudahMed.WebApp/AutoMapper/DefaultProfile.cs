@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MudahMed.Data.Entities;
-using MudahMed.Data.ViewModel;
+using MudahMed.Data.ViewModel.User;
 
 namespace MudahMed.WebApp.AutoMapper
 {

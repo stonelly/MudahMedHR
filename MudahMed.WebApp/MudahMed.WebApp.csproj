@@ -357,4 +357,19 @@
     <Folder Include="wwwroot\images\skills\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Areas\Employer\Views\Shared\_NavbarPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Employer\Views\Shared\_SideMenuPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Employer\Views\Shared\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

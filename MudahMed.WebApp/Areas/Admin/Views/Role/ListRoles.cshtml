@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MudahMed.Data.ViewModel.RoleViewModel>
+﻿@model IEnumerable<MudahMed.Data.ViewModel.User.RoleViewModel>
 
 <main id="js-page-content" role="main" class="page-content">
     <ol class="breadcrumb page-breadcrumb" id="breadcrumb">
@@ -49,6 +49,9 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Description)
                                     </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.EncryptedKey)                                        
+                                    </th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -61,6 +64,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EncryptedKey)
                                         </td>
                                         <td class="d-flex justify-content-end">
                                             <div class="demo">

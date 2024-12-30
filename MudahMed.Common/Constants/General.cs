@@ -10,5 +10,9 @@ namespace MudahMed.Common.Constants
     {
         //Default CodeMaster codetype
         public static readonly string CodeMasterType = "CodeMasterType";
+
+
+        public static readonly int Status_InActive = 0;
+        public static readonly int Status_Active = 1;
     }
 }

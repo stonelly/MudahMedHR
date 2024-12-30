@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MudahMed.Common.Constants;
 using MudahMed.Data.Entities;
-using MudahMed.Data.ViewModel;
+using MudahMed.Data.ViewModel.User;
 
 namespace MudahMed.WebApp.Areas.Employer.Controllers
 {

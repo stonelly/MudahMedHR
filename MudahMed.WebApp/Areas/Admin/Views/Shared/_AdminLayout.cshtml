@@ -241,16 +241,12 @@
                             <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                                 <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                                     <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
-                                        <span class="mr-2">
-                                            <img src="img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
-                                        </span>
                                         <div class="info-card-text">
-                                            <div class="fs-lg text-truncate text-truncate-lg">Dr. Codex Lantern</div>
-                                            <span class="text-truncate text-truncate-md opacity-80">drlantern@gotbootstrap.com</span>
+                                            <div class="fs-lg text-truncate text-truncate-lg">@User.Identity.Name</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="dropdown-divider m-0"></div>
+                                @* <div class="dropdown-divider m-0"></div>
                                 <a href="#" class="dropdown-item" data-action="app-reset">
                                     <span data-i18n="drpdwn.reset_layout">Reset Layout</span>
                                 </a>
@@ -278,11 +274,14 @@
                                         <a href="#?lang=jp" class="dropdown-item" data-action="lang" data-lang="jp">日本語</a>
                                         <a href="#?lang=ch" class="dropdown-item" data-action="lang" data-lang="ch">中文</a>
                                     </div>
-                                </div>
+                                </div> *@
+                                <div class="dropdown-divider m-0"></div>
+                                <a class="dropdown-item fw-500 pt-3 pb-3" href="@Url.Action("ChangePassword", "Account")">
+                                    <span data-i18n="drpdwn.page-logout">Change Password</span>
+                                </a>
                                 <div class="dropdown-divider m-0"></div>
                                 <a class="dropdown-item fw-500 pt-3 pb-3" href="@Url.Action("Logout", "Account")">
                                     <span data-i18n="drpdwn.page-logout">Logout</span>
-                                    <span class="float-right fw-n">&commat;codexlantern</span>
                                 </a>
                             </div>
                         </div>

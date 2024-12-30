@@ -60,17 +60,17 @@ namespace MudahMed.Data.DataContext
             //modelBuilder.Entity<CorpGroup>().HasOne(cg => cg.Bank).WithMany(b => b.CorpGroups).HasForeignKey(cg => cg.BankID).OnDelete(DeleteBehavior.Restrict);
             //modelBuilder.Entity<Employee>().HasOne(e => e.Bank).WithMany(b => b.Employees).HasForeignKey(e => e.BankID).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<AppUser>()
-             .HasOne(u => u.Corp)
-             .WithMany() // Assuming a Corp can have many users
-             .HasForeignKey(u => u.RefId)
-             .IsRequired(false); // Change to true if RefId is required
+            //modelBuilder.Entity<AppUser>()
+            // .HasOne(u => u.Corp)
+            // .WithMany() // Assuming a Corp can have many users
+            // .HasForeignKey(u => u.RefId)
+            // .IsRequired(false); // Change to true if RefId is required
 
-            modelBuilder.Entity<AppUser>()
-                .HasOne(u => u.Clinic)
-                .WithMany() // Assuming a Clinic can have many users
-                .HasForeignKey(u => u.RefId)
-                .IsRequired(false); // Adjust based on your requirements
+            //modelBuilder.Entity<AppUser>()
+            //    .HasOne(u => u.Clinic)
+            //    .WithMany() // Assuming a Clinic can have many users
+            //    .HasForeignKey(u => u.RefId)
+            //    .IsRequired(false); // Adjust based on your requirements
 
 
             //Data seeding

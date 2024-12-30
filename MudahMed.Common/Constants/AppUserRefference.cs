@@ -11,5 +11,7 @@ namespace MudahMed.Common.Constants
         public static readonly string tblClinic = "tblClinic";
         public static readonly string tblCorp = "tblCorp";
         public static readonly string tblEmployee = "tblEmployee";
+
+        public static readonly int defaultCorpID = 1;
     }
 }

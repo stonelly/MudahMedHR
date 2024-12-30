@@ -42,9 +42,34 @@ namespace MudahMed.Data.Repositories
                 .Select(ur => ur.UserId)
                 .ToList();
 
+            //var users = _context.AppUsers
+            //    .Where(u => userIds.Contains(u.Id))
+            //    .ToList();
             var users = _context.AppUsers
-                .Where(u => userIds.Contains(u.Id))
-                .ToList();
+                       .Where(u => userIds.Contains(u.Id))
+                       .Select(u => new AppUser
+                       {
+                           Id = u.Id,
+                           Email = u.Email,
+                           FullName = u.FullName,
+                           RefId = u.RefId,
+                           RefTable = u.RefTable,
+                           Status = u.Status,
+                           CreatedBy = u.CreatedBy,
+                           CreatedDate = u.CreatedDate,
+                           ModifiedBy = u.ModifiedBy,
+                           ModifiedDate = u.ModifiedDate,
+                           UserName = u.UserName,
+                           NormalizedEmail = u.NormalizedEmail,
+                           EmailConfirmed = u.EmailConfirmed,
+                           TwoFactorEnabled = u.TwoFactorEnabled,
+                           LockoutEnabled = u.LockoutEnabled,
+                           LockoutEnd = u.LockoutEnd,
+                           AccessFailedCount = u.AccessFailedCount,
+                           Corp = u.RefTable == "tblCorp" ? _context.Corps.FirstOrDefault(c => c.CorpID == u.RefId) : null,
+                           Clinic = u.RefTable == "tblClinic" ? _context.Clinics.FirstOrDefault(c => c.ClinicID == u.RefId) : null
+                       })
+                       .ToList();
 
             return users;
         }

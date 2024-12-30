@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace MudahMed.Data.ViewModel
+namespace MudahMed.Data.ViewModel.User
 {
     public class ListEmployersViewWModel
     {
