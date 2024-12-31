@@ -4,18 +4,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MudahMed.Data.DataContext;
 using MudahMed.Data.Entities;
 using MudahMed.Data.ViewModel.Dep;
+using MudahMed.Services;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Drawing;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
     public class DependentsController : Controller
     {
         private readonly DataDbContext _context;
+        private readonly QRCodeService _qrCodeService;
 
-        public DependentsController(DataDbContext context)
+        public DependentsController(DataDbContext context, QRCodeService qrCodeService)
         {
             _context = context;
+            _qrCodeService = qrCodeService;
         }
 
         // GET: Dependents
@@ -80,6 +84,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name", dependent.Emp_id);
+            ViewData["QRCodeImage"] = GenerateDependentQRCode(dependent.Emp_id);
             return View(dependent);
         }
 
@@ -114,6 +119,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name", dependent.Emp_id);
+            ViewData["QRCodeImage"] = GenerateDependentQRCode(dependent.Emp_id);
             return View(dependent);
         }
 
@@ -243,6 +249,36 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             }
 
             return View(model);
+        }
+
+
+        // GET: Dependents/GenerateQRCode/5
+        private string GenerateDependentQRCode(int? id)
+        {
+            if (id == null)
+            {
+                return string.Empty;
+            }
+
+            var dependent = _context.Dependents.Find(id);
+            if (dependent == null)
+            {
+                return string.Empty;
+            }
+
+            string qrData = $"D|{dependent.Dep_id}|{dependent.Emp_id}";
+            Bitmap qrCodeImage = _qrCodeService.GenerateQRCode(qrData);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                qrCodeImage.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] imageBytes = memoryStream.ToArray();
+                string base64String = Convert.ToBase64String(imageBytes);
+                string imgSrc = $"data:image/png;base64,{base64String}";
+                return imgSrc;
+            }
+
+            return string.Empty;
         }
     }
 }

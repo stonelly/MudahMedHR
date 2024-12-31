@@ -1826,7 +1826,7 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/3.1.0": {
+      "Microsoft.NETCore.Platforms/1.1.1": {
         "type": "package",
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -2316,6 +2316,41 @@
         "runtime": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "QRCoder/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/QRCoder.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/QRCoder.dll": {}
+        }
+      },
+      "QRCoder.Core/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "[6.0.0, 7.0.0)",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.CodePages": "8.0.0",
+          "System.Text.Encoding.Extensions": "4.3.0"
+        },
+        "compile": {
+          "lib/net6.0/QRCoder.Core.dll": {
+            "related": ".pdb;.runtimeconfig.json;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/QRCoder.Core.dll": {
+            "related": ".pdb;.runtimeconfig.json;.xml"
+          }
+        },
+        "contentFiles": {
+          "contentFiles/any/any/_._": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": false
           }
         }
       },
@@ -3895,23 +3930,26 @@
           }
         }
       },
-      "System.Text.Encoding.CodePages/4.7.0": {
+      "System.Text.Encoding.CodePages/8.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0"
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {
+          "lib/net6.0/System.Text.Encoding.CodePages.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {
+          "lib/net6.0/System.Text.Encoding.CodePages.dll": {
             "related": ".xml"
           }
         },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        },
         "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll": {
+          "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -4194,7 +4232,8 @@
           "Microsoft.EntityFrameworkCore": "6.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3",
           "MudahMed.Data": "1.0.0",
-          "NETCore.MailKit": "2.1.0"
+          "NETCore.MailKit": "2.1.0",
+          "QRCoder.Core": "1.0.3"
         },
         "compile": {
           "bin/placeholder/MudahMed.Services.dll": {}
@@ -6263,21 +6302,19 @@
         "notices/THIRDPARTYNOTICES.txt"
       ]
     },
-    "Microsoft.NETCore.Platforms/3.1.0": {
-      "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
+    "Microsoft.NETCore.Platforms/1.1.1": {
+      "sha512": "TMBuzAHpTenGbGgk0SMTwyEkyijY/Eae4ZGsFNYJvAr/LDn1ku3Etp3FPxChmDp5HHF3kzJuoaa08N0xjqAJfQ==",
       "type": "package",
-      "path": "microsoft.netcore.platforms/3.1.0",
+      "path": "microsoft.netcore.platforms/1.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+        "microsoft.netcore.platforms.1.1.1.nupkg.sha512",
         "microsoft.netcore.platforms.nuspec",
-        "runtime.json",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "runtime.json"
       ]
     },
     "Microsoft.NETCore.Targets/1.1.3": {
@@ -7248,6 +7285,71 @@
         "lib/netstandard2.0/BouncyCastle.Crypto.xml",
         "portable.bouncycastle.1.9.0.nupkg.sha512",
         "portable.bouncycastle.nuspec"
+      ]
+    },
+    "QRCoder/1.6.0": {
+      "sha512": "XmPA81eo+oRxBuyVdswsSkTGTE1d3thfF11Z1PdD7oB56A6HU4G4AAOdySmGRMb/cljwlFTMWUtosGEnwpS6GA==",
+      "type": "package",
+      "path": "qrcoder/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/QRCoder.dll",
+        "lib/net40/QRCoder.dll",
+        "lib/net5.0-windows7.0/QRCoder.dll",
+        "lib/net5.0/QRCoder.dll",
+        "lib/net6.0-windows7.0/QRCoder.dll",
+        "lib/net6.0/QRCoder.dll",
+        "lib/netstandard1.3/QRCoder.dll",
+        "lib/netstandard2.0/QRCoder.dll",
+        "nuget-icon.png",
+        "nuget-readme.md",
+        "qrcoder.1.6.0.nupkg.sha512",
+        "qrcoder.nuspec"
+      ]
+    },
+    "QRCoder.Core/1.0.3": {
+      "sha512": "OklJf4yKLk26ToZUUlBYVcPYwX3BfwGO+78sTBd+OuCq7ml39/v0NnHnspbU9Boo4DwNrV+/Vi9WBz3enFPzBw==",
+      "type": "package",
+      "path": "qrcoder.core/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/runtimeconfig.template.json",
+        "contentFiles/any/net48/runtimeconfig.template.json",
+        "contentFiles/any/net6.0-windows7.0/runtimeconfig.template.json",
+        "contentFiles/any/net6.0/runtimeconfig.template.json",
+        "contentFiles/any/net8.0-windows7.0/runtimeconfig.template.json",
+        "contentFiles/any/net8.0/runtimeconfig.template.json",
+        "contentFiles/any/netstandard2.1/runtimeconfig.template.json",
+        "lib/net48/QRCoder.Core.dll",
+        "lib/net48/QRCoder.Core.pdb",
+        "lib/net48/QRCoder.Core.runtimeconfig.json",
+        "lib/net48/QRCoder.Core.xml",
+        "lib/net6.0-windows7.0/QRCoder.Core.dll",
+        "lib/net6.0-windows7.0/QRCoder.Core.pdb",
+        "lib/net6.0-windows7.0/QRCoder.Core.runtimeconfig.json",
+        "lib/net6.0-windows7.0/QRCoder.Core.xml",
+        "lib/net6.0/QRCoder.Core.dll",
+        "lib/net6.0/QRCoder.Core.pdb",
+        "lib/net6.0/QRCoder.Core.runtimeconfig.json",
+        "lib/net6.0/QRCoder.Core.xml",
+        "lib/net8.0-windows7.0/QRCoder.Core.dll",
+        "lib/net8.0-windows7.0/QRCoder.Core.pdb",
+        "lib/net8.0-windows7.0/QRCoder.Core.runtimeconfig.json",
+        "lib/net8.0-windows7.0/QRCoder.Core.xml",
+        "lib/net8.0/QRCoder.Core.dll",
+        "lib/net8.0/QRCoder.Core.pdb",
+        "lib/net8.0/QRCoder.Core.runtimeconfig.json",
+        "lib/net8.0/QRCoder.Core.xml",
+        "lib/netstandard2.1/QRCoder.Core.dll",
+        "lib/netstandard2.1/QRCoder.Core.pdb",
+        "lib/netstandard2.1/QRCoder.Core.runtimeconfig.json",
+        "lib/netstandard2.1/QRCoder.Core.xml",
+        "nuget-icon.png",
+        "nuget-readme.md",
+        "qrcoder.core.1.0.3.nupkg.sha512",
+        "qrcoder.core.nuspec"
       ]
     },
     "RBush/4.0.0": {
@@ -10903,44 +11005,46 @@
         "system.text.encoding.nuspec"
       ]
     },
-    "System.Text.Encoding.CodePages/4.7.0": {
-      "sha512": "aeu4FlaUTemuT1qOd1MyU4T516QR4Fy+9yDbwWMPHOHy7U8FD6SgTzdZFO7gHcfAPHtECqInbwklVvUK4RHcNg==",
+    "System.Text.Encoding.CodePages/8.0.0": {
+      "sha512": "OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
       "type": "package",
-      "path": "system.text.encoding.codepages/4.7.0",
+      "path": "system.text.encoding.codepages/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "Icon.png",
         "LICENSE.TXT",
+        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Text.Encoding.CodePages.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Text.Encoding.CodePages.targets",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
-        "lib/net46/System.Text.Encoding.CodePages.dll",
-        "lib/net461/System.Text.Encoding.CodePages.dll",
-        "lib/net461/System.Text.Encoding.CodePages.xml",
-        "lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
+        "lib/net462/System.Text.Encoding.CodePages.dll",
+        "lib/net462/System.Text.Encoding.CodePages.xml",
+        "lib/net6.0/System.Text.Encoding.CodePages.dll",
+        "lib/net6.0/System.Text.Encoding.CodePages.xml",
+        "lib/net7.0/System.Text.Encoding.CodePages.dll",
+        "lib/net7.0/System.Text.Encoding.CodePages.xml",
+        "lib/net8.0/System.Text.Encoding.CodePages.dll",
+        "lib/net8.0/System.Text.Encoding.CodePages.xml",
         "lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
         "lib/netstandard2.0/System.Text.Encoding.CodePages.xml",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/win/lib/net461/System.Text.Encoding.CodePages.dll",
-        "runtimes/win/lib/net461/System.Text.Encoding.CodePages.xml",
-        "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll",
-        "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.xml",
-        "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
-        "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
-        "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.xml",
-        "system.text.encoding.codepages.4.7.0.nupkg.sha512",
+        "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.xml",
+        "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.xml",
+        "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.xml",
+        "system.text.encoding.codepages.8.0.0.nupkg.sha512",
         "system.text.encoding.codepages.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Text.Encoding.Extensions/4.3.0": {
@@ -11658,27 +11762,28 @@
       "MudahMed.Common >= 1.0.0",
       "MudahMed.Data >= 1.0.0",
       "MudahMed.Services >= 1.0.0",
+      "QRCoder >= 1.6.0",
       "X.PagedList.Mvc.Core >= 8.4.7"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\chongkah\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\MudahMed\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
+      "projectUniqueName": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
       "projectName": "MudahMed.WebApp",
-      "projectPath": "D:\\Project\\MudahMed\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\MudahMed\\MudahMed.WebApp\\obj\\",
+      "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
+      "packagesPath": "C:\\Users\\chongkah\\.nuget\\packages\\",
+      "outputPath": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\chongkah\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11694,14 +11799,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Project\\MudahMed\\MudahMed.Common\\MudahMed.Common.csproj": {
-              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Common\\MudahMed.Common.csproj"
+            "D:\\Git\\MudahMedHR\\MudahMed.Common\\MudahMed.Common.csproj": {
+              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Common\\MudahMed.Common.csproj"
             },
-            "D:\\Project\\MudahMed\\MudahMed.Data\\MudahMed.Data.csproj": {
-              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Data\\MudahMed.Data.csproj"
+            "D:\\Git\\MudahMedHR\\MudahMed.Data\\MudahMed.Data.csproj": {
+              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Data\\MudahMed.Data.csproj"
             },
-            "D:\\Project\\MudahMed\\MudahMed.Services\\MudahMed.Services.csproj": {
-              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Services\\MudahMed.Services.csproj"
+            "D:\\Git\\MudahMedHR\\MudahMed.Services\\MudahMed.Services.csproj": {
+              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Services\\MudahMed.Services.csproj"
             }
           }
         }
@@ -11781,6 +11886,10 @@
             "target": "Package",
             "version": "[6.0.3, )"
           },
+          "QRCoder": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "X.PagedList.Mvc.Core": {
             "target": "Package",
             "version": "[8.4.7, )"
@@ -11797,6 +11906,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.27, 6.0.27]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.27, 6.0.27]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.27, 6.0.27]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.27, 6.0.27]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11805,7 +11932,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

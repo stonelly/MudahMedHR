@@ -10,6 +10,8 @@ using MudahMed.Data.ViewModel.User;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MudahMed.Data.ViewModel.Emp;
 using ClosedXML.Excel;
+using MudahMed.Services;
+using System.Drawing;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
@@ -19,11 +21,13 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
     {
         private readonly DataDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly QRCodeService _qrCodeService;
 
-        public EmployerController(DataDbContext context, UserManager<AppUser> userManager)
+        public EmployerController(DataDbContext context, UserManager<AppUser> userManager, QRCodeService qrCodeService)
         {
             _context = context;
             _userManager = userManager;
+            _qrCodeService = qrCodeService;
         }
 
         // GET: Employees
@@ -89,6 +93,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["BankID"] = new SelectList(_context.Banks, "BankID", "BankName", employee.BankID);
+            ViewData["QRCodeImage"] = GenerateQRCode(employee.Emp_id);
             return View(employee);
         }
 
@@ -123,6 +128,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BankID"] = new SelectList(_context.Banks, "BankID", "BankName", employee.BankID);
+            ViewData["QRCodeImage"] = GenerateQRCode(employee.Emp_id);
             return View(employee);
         }
 
@@ -241,6 +247,35 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             }
 
             return View(model);
+        }
+
+
+        public String GenerateQRCode(int? id)
+        {
+            if (id == null)
+            {
+                return string.Empty;
+            }
+
+            var employee = _context.Employees.Find(id);
+            if (employee == null)
+            {
+                return string.Empty;
+            }
+
+            string qrData = $"E|{employee.Emp_id}|{employee.CorpID}";
+            Bitmap qrCodeImage = _qrCodeService.GenerateQRCode(qrData);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                qrCodeImage.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] imageBytes = memoryStream.ToArray();
+                string base64String = Convert.ToBase64String(imageBytes);
+                string imgSrc = $"data:image/png;base64,{base64String}";
+                return imgSrc;
+            }
+
+            return string.Empty;
         }
     }
 }
