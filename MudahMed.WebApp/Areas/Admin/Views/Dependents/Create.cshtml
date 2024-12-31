@@ -1,4 +1,4 @@
-﻿@model DependentViewModel
+﻿@model MudahMed.Data.ViewModel.Dep.DependentViewModel
 
 <h2>Create Dependent</h2>
 
@@ -6,7 +6,7 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="CorpID" class="control-label"></label>
-        <select asp-for="CorpID" class="form-control" asp-items="ViewData[" CorpID"]" id="CorpID"></select>
+        <select asp-for="CorpID" class="form-control" asp-items="ViewBag.CorpID" id="CorpID"></select>
         <span asp-validation-for="CorpID" class="text-danger"></span>
     </div>
     <div class="form-group">

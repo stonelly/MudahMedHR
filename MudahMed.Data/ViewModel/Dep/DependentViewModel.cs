@@ -74,6 +74,10 @@ namespace MudahMed.Data.ViewModel.Dep
 
         [Display(Name = "Resignation Date")]
         public DateTime? DepResignDT { get; set; }
+
+        [Display(Name = "Corporate ID")]
+        [StringLength(20, ErrorMessage = "Corporate ID cannot be more than 20 characters.")]
+        public string? CorpID { get; set; }
     }
 
 }
