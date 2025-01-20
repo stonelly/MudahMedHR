@@ -12,156 +12,158 @@ using MudahMed.Data.ViewModel.Emp;
 using ClosedXML.Excel;
 using MudahMed.Services;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
+using MudahMed.Services.Abstract;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
-    [Route("admin/apply-employer")]
+    [Route("admin/authorization")]
+    [Route("admin/employee")]
     public class EmployerController : Controller
     {
         private readonly DataDbContext _context;
         private readonly UserManager<AppUser> _userManager;
-        private readonly QRCodeService _qrCodeService;
+        private readonly IQRCodeService _qrCodeService;
+        private readonly ICorpService _corpService;
+        private readonly IEmployeeService _employeeService;
 
-        public EmployerController(DataDbContext context, UserManager<AppUser> userManager, QRCodeService qrCodeService)
+        public EmployerController(IEmployeeService employeeService, DataDbContext context, UserManager<AppUser> userManager, ICorpService corpService, IQRCodeService qrCodeService)
         {
             _context = context;
             _userManager = userManager;
             _qrCodeService = qrCodeService;
+            _corpService = corpService;
+            _employeeService = employeeService;
         }
 
-        // GET: Employees
+        [Route("list-employee")]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var employees = _context.Employees.Include(e => e.Bank).Include(e => e.Dependents);
-            return View(await employees.ToListAsync());
+            var employees = await _employeeService.GetAllEmployees();
+            return View(employees);
         }
 
-        // GET: Employees/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+      
 
-            var employee = await _context.Employees
-                .Include(e => e.Bank)
-                .Include(e => e.Dependents)
-                .FirstOrDefaultAsync(m => m.Emp_id == id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return View(employee);
-        }
-
-        // GET: Employees/Create
+        [Route("create-employee")]
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["BankID"] = new SelectList(_context.Banks, "BankID", "BankName");
+            var corpGroups = _corpService.GetAllCorps().Result.Where(c => c.IsActive == true).ToList();
+            ViewData["CorpID"] = new SelectList(corpGroups, "CorpID", "Corp_name");
+            ViewData["BankId"] = new SelectList(_context.Banks.OrderBy(p => p.Bank_id), "Bank_id", "Bank_name");
             return View();
         }
 
-        // POST: Employees/Create
+        [Route("create-employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Emp_id,Emp_ic,Emp_name,CorpID,Suboffice_fk,Dept_fk,BenefitID,Emp_gender,Emp_dob,Emp_race,Emp_nationality,Addr1,Addr2,Addr3,Postcode,City,State,Country,Email,Cont_no,Designation,Remarks,Join_dt,Ent_dt,BankID,BankAccNo,Resign_dt,ClientNumber,CostCentre,IsActive,CreatedDate,LastModifiedBy,LastModifiedDate")] Employee employee)
+        public async Task<IActionResult> Create(EmployeeViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
-                await _context.SaveChangesAsync();
+                await _employeeService.CreateEmployeeAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BankID"] = new SelectList(_context.Banks, "BankID", "BankName", employee.BankID);
-            return View(employee);
+            var corpGroups = _corpService.GetAllCorps().Result.Where(c => c.IsActive == true).ToList();
+            ViewData["CorpID"] = new SelectList(corpGroups, "CorpID", "Corp_name");
+            ViewData["BankId"] = new SelectList(_context.Banks.OrderBy(p => p.Bank_id), "Bank_id", "Bank_name");
+            return View(model);
         }
 
-        // GET: Employees/Edit/5
+
+        [Route("edit-employee/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employees.FindAsync(id);
+            var employee = await _employeeService.GetEmployeeByIdAsync(id.Value);
             if (employee == null)
             {
                 return NotFound();
             }
-            ViewData["BankID"] = new SelectList(_context.Banks, "BankID", "BankName", employee.BankID);
+
+            ViewData["BankId"] = new SelectList(_context.Banks.OrderBy(p => p.Bank_id), "Bank_id", "Bank_name");
             ViewData["QRCodeImage"] = GenerateQRCode(employee.Emp_id);
             return View(employee);
         }
 
-        // POST: Employees/Edit/5
+        [Route("edit-employee/{id}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Emp_id,Emp_ic,Emp_name,CorpID,Suboffice_fk,Dept_fk,BenefitID,Emp_gender,Emp_dob,Emp_race,Emp_nationality,Addr1,Addr2,Addr3,Postcode,City,State,Country,Email,Cont_no,Designation,Remarks,Join_dt,Ent_dt,BankID,BankAccNo,Resign_dt,ClientNumber,CostCentre,IsActive,CreatedDate,LastModifiedBy,LastModifiedDate")] Employee employee)
+        public async Task<IActionResult> Edit(EmployeeViewModel model)
         {
-            if (id != employee.Emp_id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(employee);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmployeeExists(employee.Emp_id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _employeeService.UpdateEmployeeAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BankID"] = new SelectList(_context.Banks, "BankID", "BankName", employee.BankID);
-            ViewData["QRCodeImage"] = GenerateQRCode(employee.Emp_id);
-            return View(employee);
+            ViewData["BankId"] = new SelectList(_context.Banks.OrderBy(p => p.Bank_id), "Bank_id", "Bank_name");
+            ViewData["QRCodeImage"] = GenerateQRCode(model.Emp_id);
+
+            return View(model);
         }
 
-        // GET: Employees/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [Route("delete-emp")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteEmp(int empID)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var model = await _employeeService.GetEmployeeByIdAsync(empID);
+                if (model == null)
+                {
+                    ViewBag.ErrorMessage = $"Employee with Id = {empID} cannot be found";
+                    return View("NotFound");
+                }
+                else
+                {
+                    // Mark as inactive instead of deleting
+                    // Assuming there is an IsActive property in the CorpViewModel class
+                    model.IsActive = false;
+                    await _employeeService.UpdateEmployeeAsync(model);
+                    return RedirectToAction(nameof(Index));
+                }
             }
-
-            var employee = await _context.Employees
-                .Include(e => e.Bank)
-                .Include(e => e.Dependents)
-                .FirstOrDefaultAsync(m => m.Emp_id == id);
-            if (employee == null)
+            catch (System.Exception)
             {
-                return NotFound();
+                return View("NotFound");
             }
-
-            return View(employee);
         }
 
-        // POST: Employees/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var employee = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[Route("delete-employee/{id}")]
+        //[HttpGet]
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var employee = await _employeeService.GetEmployeeByIdAsync(id.Value);
+        //    if (employee == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(employee);
+        //}
+
+        //// POST: Employees/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    await _employeeService.DeleteEmployeeAsync(id);
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool EmployeeExists(int id)
         {
@@ -221,7 +223,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                             Remarks = worksheet.Cell(row, 21).GetString(),
                             Join_dt = DateTime.Parse(worksheet.Cell(row, 22).GetString()),
                             Ent_dt = DateTime.Parse(worksheet.Cell(row, 23).GetString()),
-                            BankID = worksheet.Cell(row, 24).GetString(),
+                            BankID = Int32.Parse(worksheet.Cell(row, 24).GetString()),
                             BankAccNo = worksheet.Cell(row, 25).GetString(),
                             Resign_dt = DateTime.Parse(worksheet.Cell(row, 26).GetString()),
                             ClientNumber = worksheet.Cell(row, 27).GetString(),

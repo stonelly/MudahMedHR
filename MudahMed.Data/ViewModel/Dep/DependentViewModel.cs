@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using MudahMed.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,8 +11,14 @@ namespace MudahMed.Data.ViewModel.Dep
 {
     public class DependentViewModel
     {
-        public int Dep_id { get; set; }
+        [Display(Name = "Corporate ID")]
+        [StringLength(20, ErrorMessage = "Corporate ID cannot be more than 20 characters.")]
+        public string? CorpID { get; set; }
 
+        [Display(Name = "Dependent ID")]
+        public int Dep_id { get; set; } // Primary Key (Auto-increment)
+
+        [Display(Name = "Employee ID")]
         [Required(ErrorMessage = "Employee ID is required.")]
         public int Emp_id { get; set; }
 
@@ -75,9 +83,10 @@ namespace MudahMed.Data.ViewModel.Dep
         [Display(Name = "Resignation Date")]
         public DateTime? DepResignDT { get; set; }
 
-        [Display(Name = "Corporate ID")]
-        [StringLength(20, ErrorMessage = "Corporate ID cannot be more than 20 characters.")]
-        public string? CorpID { get; set; }
+        // Navigation property to Employee
+
+        [ValidateNever]
+        public virtual Employee Employee { get; set; }
     }
 
 }

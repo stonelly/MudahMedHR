@@ -58,7 +58,8 @@ namespace MudahMed.Data.Configurations
             builder.Property(x => x.Remarks)
                    .HasMaxLength(100);
 
-            builder.Property(x => x.IsActive);
+            builder.Property(x => x.IsActive)
+                   .HasDefaultValue(true); // Assuming active by default
 
             builder.Property(x => x.CreatedDate);
 

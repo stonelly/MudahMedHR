@@ -89,7 +89,7 @@ namespace MudahMed.Data.Configurations
             builder.Property(x => x.Ent_dt);
 
             builder.Property(x => x.BankID)
-                   .HasMaxLength(100);
+                   .IsRequired();
 
             builder.Property(x => x.BankAccNo)
                    .HasMaxLength(30);
@@ -102,7 +102,8 @@ namespace MudahMed.Data.Configurations
             builder.Property(x => x.CostCentre)
                    .HasMaxLength(100);
 
-            builder.Property(x => x.IsActive);
+            builder.Property(x => x.IsActive)
+                   .HasDefaultValue(true); // Assuming active by default
 
             builder.Property(x => x.CreatedDate);
 

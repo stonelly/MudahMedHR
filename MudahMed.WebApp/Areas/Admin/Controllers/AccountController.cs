@@ -240,7 +240,8 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 Email = user.Email,
                 FullName = user.FullName,
                 Phone = user.PhoneNumber,
-                RefId = user.RefId ?? 1
+                RefId = user.RefId ?? 1,
+                TwoFactorEnabled = user.TwoFactorEnabled,
             };
 
             if (user.RefTable == AppUserRefference.tblCorp && user.RefId == AppUserRefference.defaultCorpID)
@@ -284,6 +285,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 user.RefId = model.RefId; // Assuming RefId is a property in your user model
                 user.ModifiedDate = DateTime.Now;
                 user.ModifiedBy = account.Id;
+                user.TwoFactorEnabled = model.TwoFactorEnabled;
 
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)

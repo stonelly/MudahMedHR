@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using MudahMed.Data.Entities;
+using MudahMed.Data.ViewModel.Bank;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MudahMed.Data.Entities
+namespace MudahMed.Data.ViewModel.Emp
 {
-    public class Employee
+    public class EmployeeViewModel
     {
         public int Emp_id { get; set; } // Primary Key (Auto-increment)
 
@@ -121,7 +123,7 @@ namespace MudahMed.Data.Entities
         public string? CostCentre { get; set; }
 
         [Display(Name = "Is Active")]
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         [Display(Name = "Created Date")]
         public DateTime? CreatedDate { get; set; }
@@ -134,7 +136,7 @@ namespace MudahMed.Data.Entities
         public DateTime? LastModifiedDate { get; set; }
 
         [ValidateNever]
-        public virtual Bank Bank { get; set; } // Navigation property
+        public virtual BankViewModel Bank { get; set; } // Navigation property
 
         // Navigation property to Dependents
         public virtual ICollection<Dependent> Dependents { get; set; } = new List<Dependent>();

@@ -175,7 +175,7 @@ namespace MudahMed.Data.Migrations
                         new
                         {
                             Id = new Guid("9f685d0f-bd6f-44dd-ab60-c606952eb2a8"),
-                            ConcurrencyStamp = "e714816d-13a6-4f0a-a41f-6d8034b105d7",
+                            ConcurrencyStamp = "3bfdf45c-1172-49ff-96a5-9cef9a7936b3",
                             Description = "Administrator role",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
@@ -183,7 +183,7 @@ namespace MudahMed.Data.Migrations
                         new
                         {
                             Id = new Guid("4e233be7-c199-4567-9c07-9271a9de4c64"),
-                            ConcurrencyStamp = "73ce758c-a918-4019-96fd-23b03c5b13ca",
+                            ConcurrencyStamp = "89c499c4-1341-4628-8fce-8d27c9c72526",
                             Description = "Corporate HR",
                             Name = "Corporate",
                             NormalizedName = "CORPORATE"
@@ -191,7 +191,7 @@ namespace MudahMed.Data.Migrations
                         new
                         {
                             Id = new Guid("376c1d1e-0b04-47da-9657-a2a87faf0a59"),
-                            ConcurrencyStamp = "c9cd37fb-8b44-4086-a6f0-10b019f6f41d",
+                            ConcurrencyStamp = "5b893c50-f9cd-41f7-beb1-854668f41297",
                             Description = "Clinic User",
                             Name = "Clinic",
                             NormalizedName = "CLINIC"
@@ -199,7 +199,7 @@ namespace MudahMed.Data.Migrations
                         new
                         {
                             Id = new Guid("b448a7dc-54c6-4060-90f0-86965c07e8f0"),
-                            ConcurrencyStamp = "dd5779d6-adf9-4d29-84c3-2dd13231b2a9",
+                            ConcurrencyStamp = "175e203a-adb9-4f71-be83-6605c1256901",
                             Description = "Employee User",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
@@ -312,15 +312,15 @@ namespace MudahMed.Data.Migrations
                         {
                             Id = new Guid("769f41bd-ccd4-45ba-abbd-550ccd0b62e3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1929cf72-c91e-4fdb-91bd-bbbc96bab01c",
-                            CreatedDate = new DateTime(2024, 12, 23, 17, 36, 14, 313, DateTimeKind.Local).AddTicks(288),
+                            ConcurrencyStamp = "74976ecb-fc1b-4a3b-8f33-f96d6068a4e6",
+                            CreatedDate = new DateTime(2025, 1, 20, 4, 1, 15, 714, DateTimeKind.Local).AddTicks(4940),
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FullName = "System Adminitrator",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECGM0dgTYVaq9immoMoqsDB38r3FinGaskIksF+cvzSiQOyY28f3hMq/pIhWIIzPWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEManP0cFHj3BzAdCYpIFALPSZTy4ErRQ4MtMD3SMDPpbHpZRUJHsD4iu/tV0hpIm6g==",
                             PhoneNumberConfirmed = false,
                             RefId = 1,
                             RefTable = "tblCorp",
@@ -333,14 +333,14 @@ namespace MudahMed.Data.Migrations
                         {
                             Id = new Guid("31986efe-9171-44e7-8503-1b4c8f9c1d1b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "64a5b662-bf1a-4b70-b248-eefedc4632e4",
+                            ConcurrencyStamp = "8dcde488-9d32-40e4-a13e-0ba3c4e7b38a",
                             Email = "corporate@gmail.com",
                             EmailConfirmed = true,
                             FullName = "HR Adminitrator",
                             LockoutEnabled = false,
                             NormalizedEmail = "corporate@GMAIL.COM",
                             NormalizedUserName = "corporate@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIq/soaswdfquyJkmqebCA9HIipOIp0ri5dBaKKdSAQ1UkD1M4uNJSyvM9J6QzeOjA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDAXsU05KOYOc2ct6RtsPtnsy1o1ZmwWeXhIHJqFbtMCaBzMq7UL2WcBUNjynf3nFw==",
                             PhoneNumberConfirmed = false,
                             RefId = 1,
                             RefTable = "tblCorp",
@@ -353,14 +353,14 @@ namespace MudahMed.Data.Migrations
                         {
                             Id = new Guid("faed90a2-9f7d-411a-8119-0fa3a668e660"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "582e9058-fbb9-4117-a217-d3bb62318422",
+                            ConcurrencyStamp = "d714d97e-5471-442a-8df6-5d589255fac4",
                             Email = "clinic@gmail.com",
                             EmailConfirmed = true,
                             FullName = "Clinic Adminitrator",
                             LockoutEnabled = false,
                             NormalizedEmail = "clinic@GMAIL.COM",
                             NormalizedUserName = "clinic@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBqZZAheqVud6PLe7gPulCH6MyECRryY+eW2kJ99kusqQTPhEbqYPC2g8G1+dK8FFQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAuByjS24E/zhHwtVfZdMs1/frzrn9Q/nJiApB5FJAIc2onj38nlLV8O7t42LXuBkw==",
                             PhoneNumberConfirmed = false,
                             RefId = 1,
                             RefTable = "tblClinic",
@@ -397,6 +397,143 @@ namespace MudahMed.Data.Migrations
                             Bank_name = "Malayan Banking Berhad",
                             IsDisplay = true
                         });
+                });
+
+            modelBuilder.Entity("MudahMed.Data.Entities.Claim", b =>
+                {
+                    b.Property<long>("ClaimID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ClaimID"), 1L, 1);
+
+                    b.Property<string>("AuditRemarks")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
+                    b.Property<string>("BenefitID")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime?>("BillDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ClaimStatus")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ClinicID")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal?>("CompanyPay")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("ConsultDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("ConsultFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DRName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("Dep_id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("DressFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("EmpPay")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("Emp_id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("InjectFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("InvoiceID")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool?>("IsAudit")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal?>("LabFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("MCDayGiven")
+                        .HasColumnType("decimal(10,1)");
+
+                    b.Property<string>("MCRemarks")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("MCStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MCType")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<decimal?>("MarkupAmt")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("MedFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("OtherCostRmks")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal?>("OthersFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ReferFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ReferTo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal?>("ScreenFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SurgFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("TotalCharge")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("XrayFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ClaimID");
+
+                    b.ToTable("tblClaim", (string)null);
                 });
 
             modelBuilder.Entity("MudahMed.Data.Entities.Clinic", b =>
@@ -822,8 +959,8 @@ namespace MudahMed.Data.Migrations
                             Corp_name = "MudahMed Sdb Bhd",
                             IndustryField = 1,
                             IsSuspend = false,
-                            LastModifiedDate = new DateTime(2024, 12, 23, 17, 36, 14, 311, DateTimeKind.Local).AddTicks(1623),
-                            createdDate = new DateTime(2024, 12, 23, 17, 36, 14, 311, DateTimeKind.Local).AddTicks(1622)
+                            LastModifiedDate = new DateTime(2025, 1, 20, 4, 1, 15, 712, DateTimeKind.Local).AddTicks(6077),
+                            createdDate = new DateTime(2025, 1, 20, 4, 1, 15, 712, DateTimeKind.Local).AddTicks(6076)
                         });
                 });
 
@@ -925,9 +1062,9 @@ namespace MudahMed.Data.Migrations
                         {
                             CorpGroupID = 1,
                             BankID = 1,
-                            LastModifiedDate = new DateTime(2024, 12, 23, 17, 36, 14, 311, DateTimeKind.Local).AddTicks(1603),
+                            LastModifiedDate = new DateTime(2025, 1, 20, 4, 1, 15, 712, DateTimeKind.Local).AddTicks(6042),
                             Name = "MudahMed Group",
-                            createdDate = new DateTime(2024, 12, 23, 17, 36, 14, 311, DateTimeKind.Local).AddTicks(1580)
+                            createdDate = new DateTime(2025, 1, 20, 4, 1, 15, 712, DateTimeKind.Local).AddTicks(6019)
                         });
                 });
 
@@ -1164,11 +1301,7 @@ namespace MudahMed.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("BankID")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Bank_id")
+                    b.Property<int>("BankID")
                         .HasColumnType("int");
 
                     b.Property<string>("BenefitID")
@@ -1274,7 +1407,7 @@ namespace MudahMed.Data.Migrations
 
                     b.HasKey("Emp_id");
 
-                    b.HasIndex("Bank_id");
+                    b.HasIndex("BankID");
 
                     b.ToTable("tblEmployees", (string)null);
                 });
@@ -1436,7 +1569,7 @@ namespace MudahMed.Data.Migrations
                 {
                     b.HasOne("MudahMed.Data.Entities.Bank", "Bank")
                         .WithMany("Employees")
-                        .HasForeignKey("Bank_id")
+                        .HasForeignKey("BankID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

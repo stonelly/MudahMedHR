@@ -2319,15 +2319,6 @@
           }
         }
       },
-      "QRCoder/1.6.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/QRCoder.dll": {}
-        },
-        "runtime": {
-          "lib/net6.0/QRCoder.dll": {}
-        }
-      },
       "QRCoder.Core/1.0.3": {
         "type": "package",
         "dependencies": {
@@ -7287,27 +7278,6 @@
         "portable.bouncycastle.nuspec"
       ]
     },
-    "QRCoder/1.6.0": {
-      "sha512": "XmPA81eo+oRxBuyVdswsSkTGTE1d3thfF11Z1PdD7oB56A6HU4G4AAOdySmGRMb/cljwlFTMWUtosGEnwpS6GA==",
-      "type": "package",
-      "path": "qrcoder/1.6.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net35/QRCoder.dll",
-        "lib/net40/QRCoder.dll",
-        "lib/net5.0-windows7.0/QRCoder.dll",
-        "lib/net5.0/QRCoder.dll",
-        "lib/net6.0-windows7.0/QRCoder.dll",
-        "lib/net6.0/QRCoder.dll",
-        "lib/netstandard1.3/QRCoder.dll",
-        "lib/netstandard2.0/QRCoder.dll",
-        "nuget-icon.png",
-        "nuget-readme.md",
-        "qrcoder.1.6.0.nupkg.sha512",
-        "qrcoder.nuspec"
-      ]
-    },
     "QRCoder.Core/1.0.3": {
       "sha512": "OklJf4yKLk26ToZUUlBYVcPYwX3BfwGO+78sTBd+OuCq7ml39/v0NnHnspbU9Boo4DwNrV+/Vi9WBz3enFPzBw==",
       "type": "package",
@@ -11762,28 +11732,27 @@
       "MudahMed.Common >= 1.0.0",
       "MudahMed.Data >= 1.0.0",
       "MudahMed.Services >= 1.0.0",
-      "QRCoder >= 1.6.0",
       "X.PagedList.Mvc.Core >= 8.4.7"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chongkah\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
+      "projectUniqueName": "D:\\Project\\MudahMed\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
       "projectName": "MudahMed.WebApp",
-      "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
-      "packagesPath": "C:\\Users\\chongkah\\.nuget\\packages\\",
-      "outputPath": "D:\\Git\\MudahMedHR\\MudahMed.WebApp\\obj\\",
+      "projectPath": "D:\\Project\\MudahMed\\MudahMed.WebApp\\MudahMed.WebApp.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Project\\MudahMed\\MudahMed.WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\chongkah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11799,14 +11768,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Git\\MudahMedHR\\MudahMed.Common\\MudahMed.Common.csproj": {
-              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Common\\MudahMed.Common.csproj"
+            "D:\\Project\\MudahMed\\MudahMed.Common\\MudahMed.Common.csproj": {
+              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Common\\MudahMed.Common.csproj"
             },
-            "D:\\Git\\MudahMedHR\\MudahMed.Data\\MudahMed.Data.csproj": {
-              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Data\\MudahMed.Data.csproj"
+            "D:\\Project\\MudahMed\\MudahMed.Data\\MudahMed.Data.csproj": {
+              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Data\\MudahMed.Data.csproj"
             },
-            "D:\\Git\\MudahMedHR\\MudahMed.Services\\MudahMed.Services.csproj": {
-              "projectPath": "D:\\Git\\MudahMedHR\\MudahMed.Services\\MudahMed.Services.csproj"
+            "D:\\Project\\MudahMed\\MudahMed.Services\\MudahMed.Services.csproj": {
+              "projectPath": "D:\\Project\\MudahMed\\MudahMed.Services\\MudahMed.Services.csproj"
             }
           }
         }
@@ -11886,10 +11855,6 @@
             "target": "Package",
             "version": "[6.0.3, )"
           },
-          "QRCoder": {
-            "target": "Package",
-            "version": "[1.6.0, )"
-          },
           "X.PagedList.Mvc.Core": {
             "target": "Package",
             "version": "[8.4.7, )"
@@ -11906,24 +11871,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11932,7 +11879,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

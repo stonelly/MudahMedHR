@@ -1,76 +1,79 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MudahMed.Data.DataContext;
 using MudahMed.Data.Entities;
 using MudahMed.Data.ViewModel.Dep;
 using MudahMed.Services;
+using MudahMed.Services.Abstract;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
 
 namespace MudahMed.WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Area("Admin")]
+    [Route("admin/authorization")]
+    [Route("admin/dependent")]
     public class DependentsController : Controller
     {
         private readonly DataDbContext _context;
-        private readonly QRCodeService _qrCodeService;
+        private readonly IQRCodeService _qrCodeService;
+        private readonly IDependentService _dependentService;
+        private readonly IEmployeeService _employeeService;
 
-        public DependentsController(DataDbContext context, QRCodeService qrCodeService)
+        public DependentsController(IDependentService dependentService, IEmployeeService employeeService, DataDbContext context, IQRCodeService qrCodeService)
         {
             _context = context;
             _qrCodeService = qrCodeService;
+            _employeeService = employeeService;
+            _dependentService = dependentService;
         }
 
-        // GET: Dependents
-        public async Task<IActionResult> Index()
+        [Route("list-dependent")]
+        [HttpGet]
+        public async Task<IActionResult> Index(string Dep_name, string Dep_ic)
         {
-            var dependents = _context.Dependents.Include(d => d.Employee);
-            return View(await dependents.ToListAsync());
+            var dependents = await _dependentService.GetAllDependents();
+            if (!string.IsNullOrEmpty(Dep_name))
+            {
+                dependents = dependents.Where(d => d.Dep_name.Contains(Dep_name));
+            }
+            if (!string.IsNullOrEmpty(Dep_ic))
+            {
+                dependents = dependents.Where(d => d.Dep_ic.Contains(Dep_ic));
+            }
+            return View(dependents);
         }
 
-        // GET: Dependents/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var dependent = await _context.Dependents
-                .Include(d => d.Employee)
-                .FirstOrDefaultAsync(m => m.Dep_id == id);
-            if (dependent == null)
-            {
-                return NotFound();
-            }
-
-            return View(dependent);
-        }
-
-        // GET: Dependents/Create
+        [Route("create-dependent")]
+        [HttpGet]
         public IActionResult Create()
         {
             ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name");
             return View();
         }
 
-        // POST: Dependents/Create
+        [Route("create-dependent")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Dep_id,Emp_id,Dep_name,Dep_ic,BenefitID,Relationship,Dep_gender,Dep_dob,Dep_race,Dep_nationality,Join_dt,Ent_dt,ClientNumber,Remarks,IsActive,CreatedDate,LastModifiedBy,LastModifiedDate,DepResignDT")] Dependent dependent)
+        public async Task<IActionResult> Create(DependentViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dependent);
-                await _context.SaveChangesAsync();
+                await _dependentService.CreateDependentAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name", dependent.Emp_id);
-            return View(dependent);
+            ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name", model.Emp_id);
+            return View(model);
         }
 
-        // GET: Dependents/Edit/5
+        [Route("edit-dependent/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,7 +81,7 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var dependent = await _context.Dependents.FindAsync(id);
+            var dependent = await _dependentService.GetDependentByIdAsync(id.Value);
             if (dependent == null)
             {
                 return NotFound();
@@ -88,42 +91,48 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             return View(dependent);
         }
 
-        // POST: Dependents/Edit/5
+        [Route("edit-dependent/{id}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Dep_id,Emp_id,Dep_name,Dep_ic,BenefitID,Relationship,Dep_gender,Dep_dob,Dep_race,Dep_nationality,Join_dt,Ent_dt,ClientNumber,Remarks,IsActive,CreatedDate,LastModifiedBy,LastModifiedDate,DepResignDT")] Dependent dependent)
+        public async Task<IActionResult> Edit(DependentViewModel model)
         {
-            if (id != dependent.Dep_id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(dependent);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DependentExists(dependent.Dep_id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _dependentService.UpdateDependentAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name", dependent.Emp_id);
-            ViewData["QRCodeImage"] = GenerateDependentQRCode(dependent.Emp_id);
-            return View(dependent);
+            ViewData["CorpID"] = new SelectList(_context.Corps, "CorpID", "Corp_name", model.Emp_id);
+            ViewData["QRCodeImage"] = GenerateDependentQRCode(model.Emp_id);
+            return View(model);
         }
 
-        // GET: Dependents/Delete/5
+        [Route("delete-Dep")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteDep(int depID)
+        {
+            try
+            {
+                var model = await _dependentService.GetDependentByIdAsync(depID);
+                if (model == null)
+                {
+                    ViewBag.ErrorMessage = $"Dependent with Id = {depID} cannot be found";
+                    return View("NotFound");
+                }
+                else
+                {
+                    // Mark as inactive instead of deleting
+                    // Assuming there is an IsActive property in the CorpViewModel class
+                    model.IsActive = false;
+                    await _dependentService.UpdateDependentAsync(model);
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (System.Exception)
+            {
+                return View("NotFound");
+            }
+        }
+        [Route("delete-dependent/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -158,13 +167,17 @@ namespace MudahMed.WebApp.Areas.Admin.Controllers
             return _context.Dependents.Any(e => e.Dep_id == id);
         }
 
+        [Route("GetEmpyByCorp")]
         [HttpGet]
         public async Task<IActionResult> GetEmployeesByCorp(int corpId)
         {
-            var employees = await _context.Employees
-                .Where(e => e.CorpID == corpId.ToString())
-                .Select(e => new { value = e.Emp_id, text = e.Emp_name })
-                .ToListAsync();
+
+            var employees = _employeeService.GetAllEmployees().Result.Where(c => c.IsActive == true && c.CorpID == corpId.ToString())
+                .Select(e => new { value = e.Emp_id, text = e.Emp_name }).ToList();
+            //var employees = await _context.Employees
+            //    .Where(e => e.CorpID == corpId.ToString())
+            //    .Select(e => new { value = e.Emp_id, text = e.Emp_name })
+            //    .ToListAsync();
 
             return Json(employees);
         }
